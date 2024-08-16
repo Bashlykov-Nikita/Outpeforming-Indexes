@@ -5,6 +5,7 @@ import main as m
 import calc as c
 import time
 
+
 st.title("Outperforming Indexes")
 st.markdown(" Data from Yahoo Finance ")
 
@@ -32,100 +33,82 @@ with st.sidebar:
     )
 
 
-def show_stats(index_data):
-    c.summary_stats(pd.DataFrame(m.resample_data(index_data)))
+def show_index_historical_data(name):
+    st.write(m.fetch_index_data(name))
+
+
+def show_stats(name):
+    stats_df = c.summary_stats(pd.DataFrame(m.resample_data(m.fetch_index_data(name))))
+    st.write(stats_df)
+    st.line_chart(
+        (1 + pd.DataFrame(m.resample_data(m.fetch_index_data(name)))).cumprod(),
+        y="Return",
+    )
 
 
 match select_index:
     case "S&P 500":
+        index_name = "^GSPC"
+        st.write("S&P 500 historical data:")
 
-        # @st.cache_data
-        def show_sp500():
-            index_name = "^GSPC"
-            st.write("S&P 500 historical data:")
-            st.write(m.fetch_index_data(index_name))
-            # st.write(show_stats(m.fetch_index_data(index_name)))
-            st.write(
-                c.summary_stats(
-                    pd.DataFrame(m.resample_data(m.fetch_index_data(index_name)))
-                )
-            )
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_sp500()
     case "Nasdaq Composite":
+        index_name = "^IXIC"
+        st.write("Nasdaq Composite historical data:")
 
-        @st.cache_data
-        def show_NC():
-            index_name = "^IXIC"
-            st.write("Nasdaq Composite historical data:")
-            st.write(m.fetch_index_data(index_name))
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_NC()
     case "Dow Jones Industrial Average":
+        index_name = "^DJI"
+        st.write("Dow Jones Industrial Average historical data:")
 
-        @st.cache_data
-        def show_DJI():
-            index_name = "^DJI"
-            st.write("Dow Jones Industrial Average historical data:")
-            st.write(m.fetch_index_data(index_name))
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_DJI()
     case "Russell 2000":
+        index_name = "^RUT"
+        st.write("Russell 2000 historical data:")
 
-        @st.cache_data
-        def show_RUT():
-            index_name = "^RUT"
-            st.write("Russell 2000 historical data:")
-            st.write(m.fetch_index_data(index_name))
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_RUT()
     case "FTSE 100":
+        index_name = "^FTSE"
+        st.write("FTSE 100 historical data:")
 
-        @st.cache_data
-        def show_FTSE():
-            index_name = "^FTSE"
-            st.write("FTSE 100 historical data:")
-            st.write(m.fetch_index_data(index_name))
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_FTSE()
     case "DAX PERFORMANCE-INDEX":
+        index_name = "^GDAXI"
+        st.write("DAX PERFORMANCE-INDEX historical data:")
 
-        @st.cache_data
-        def show_GDAXI():
-            index_name = "^GDAXI"
-            st.write("DAX PERFORMANCE-INDEX historical data:")
-            st.write(m.fetch_index_data(index_name))
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_GDAXI()
     case "CAC 40":
+        index_name = "^FCHI"
+        st.write("CAC 40 historical data:")
 
-        @st.cache_data
-        def show_FCHI():
-            index_name = "^FCHI"
-            st.write("CAC 40 historical data:")
-            st.write(m.fetch_index_data(index_name))
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_FCHI()
     case "Nikkei 225":
+        index_name = "^N225"
+        st.write("Nikkei 225 historical data:")
 
-        @st.cache_data
-        def show_N225():
-            index_name = "^N225"
-            st.write("Nikkei 225 historical data:")
-            st.write(m.fetch_index_data(index_name))
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_N225()
     case "HANG SENG INDEX":
+        index_name = "^HSI"
+        st.write("HANG SENG INDEX historical data:")
 
-        @st.cache_data
-        def show_HSI():
-            index_name = "^HSI"
-            st.write("HANG SENG INDEX historical data:")
-            st.write(m.fetch_index_data(index_name))
+        show_index_historical_data(index_name)
+        show_stats(index_name)
 
-        show_HSI()
 
-agree = st.checkbox("I agree")
-
-if agree:
-    st.write("Great!")
+st.write(index_name)
