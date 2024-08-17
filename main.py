@@ -4,6 +4,18 @@ import yfinance as yf
 import calc as c
 
 
+# TODO: Unify
+def data_for_plots(index_name):
+    index_data = yf.Ticker(index_name)
+    index_data = index_data.history(period="max")
+    mask = index_data["Open"] == 0
+    index_data = index_data[~mask]
+    index_data["Return"] = (index_data["Close"] - index_data["Open"]) / index_data[
+        "Open"
+    ]
+    return index_data["Return"]
+
+
 def fetch_index_data(index_name):
     index_data = yf.Ticker(index_name)
 

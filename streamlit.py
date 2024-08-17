@@ -4,6 +4,7 @@ import pandas as pd
 import main as m
 import calc as c
 import time
+import matplotlib.pyplot as plt
 
 
 st.title("Outperforming Indexes")
@@ -33,17 +34,21 @@ with st.sidebar:
     )
 
 
+@st.cache_data
 def show_index_historical_data(name):
     st.write(m.fetch_index_data(name))
 
 
+@st.cache_data
 def show_stats(name):
-    stats_df = c.summary_stats(pd.DataFrame(m.resample_data(m.fetch_index_data(name))))
+    m_ind_data = pd.DataFrame(m.resample_data(m.fetch_index_data(name)))
+    stats_df = c.summary_stats(m_ind_data)
     st.write(stats_df)
-    st.line_chart(
-        (1 + pd.DataFrame(m.resample_data(m.fetch_index_data(name)))).cumprod(),
-        y="Return",
-    )
+
+
+@st.cache_data
+def growth_plot(name):
+    st.line_chart(data=(1 + m.data_for_plots(name)).cumprod(), y="Return")
 
 
 match select_index:
@@ -53,6 +58,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
     case "Nasdaq Composite":
         index_name = "^IXIC"
@@ -60,6 +66,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
     case "Dow Jones Industrial Average":
         index_name = "^DJI"
@@ -67,6 +74,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
     case "Russell 2000":
         index_name = "^RUT"
@@ -74,6 +82,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
     case "FTSE 100":
         index_name = "^FTSE"
@@ -81,6 +90,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
     case "DAX PERFORMANCE-INDEX":
         index_name = "^GDAXI"
@@ -88,6 +98,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
     case "CAC 40":
         index_name = "^FCHI"
@@ -95,6 +106,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
     case "Nikkei 225":
         index_name = "^N225"
@@ -102,6 +114,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
     case "HANG SENG INDEX":
         index_name = "^HSI"
@@ -109,6 +122,7 @@ match select_index:
 
         show_index_historical_data(index_name)
         show_stats(index_name)
+        growth_plot(index_name)
 
 
 st.write(index_name)
