@@ -54,6 +54,10 @@ def growth_plot(name):
 match select_index:
     case "S&P 500":
         index_name = "^GSPC"
+        components_url = (
+            "https://yfiua.github.io/index-constituents/constituents-sp500.csv"
+        )
+
         st.write("S&P 500 historical data:")
 
         show_index_historical_data(index_name)
@@ -62,6 +66,10 @@ match select_index:
 
     case "Nasdaq Composite":
         index_name = "^IXIC"
+        components_url = (
+            "https://yfiua.github.io/index-constituents/constituents-nasdaq100.csv"
+        )
+
         st.write("Nasdaq Composite historical data:")
 
         show_index_historical_data(index_name)
@@ -70,6 +78,10 @@ match select_index:
 
     case "Dow Jones Industrial Average":
         index_name = "^DJI"
+        components_url = (
+            "https://yfiua.github.io/index-constituents/constituents-dowjones.csv"
+        )
+
         st.write("Dow Jones Industrial Average historical data:")
 
         show_index_historical_data(index_name)
@@ -78,6 +90,7 @@ match select_index:
 
     case "Russell 2000":
         index_name = "^RUT"
+        components_url = None
         st.write("Russell 2000 historical data:")
 
         show_index_historical_data(index_name)
@@ -86,6 +99,10 @@ match select_index:
 
     case "FTSE 100":
         index_name = "^FTSE"
+        components_url = (
+            "https://yfiua.github.io/index-constituents/constituents-ftse100.csv"
+        )
+
         st.write("FTSE 100 historical data:")
 
         show_index_historical_data(index_name)
@@ -94,6 +111,9 @@ match select_index:
 
     case "DAX PERFORMANCE-INDEX":
         index_name = "^GDAXI"
+        components_url = (
+            "https://yfiua.github.io/index-constituents/constituents-dax.csv"
+        )
         st.write("DAX PERFORMANCE-INDEX historical data:")
 
         show_index_historical_data(index_name)
@@ -102,6 +122,7 @@ match select_index:
 
     case "CAC 40":
         index_name = "^FCHI"
+        components_url = None
         st.write("CAC 40 historical data:")
 
         show_index_historical_data(index_name)
@@ -110,6 +131,7 @@ match select_index:
 
     case "Nikkei 225":
         index_name = "^N225"
+        components_url = None
         st.write("Nikkei 225 historical data:")
 
         show_index_historical_data(index_name)
@@ -118,6 +140,9 @@ match select_index:
 
     case "HANG SENG INDEX":
         index_name = "^HSI"
+        components_url = (
+            "https://yfiua.github.io/index-constituents/constituents-hsi.csv"
+        )
         st.write("HANG SENG INDEX historical data:")
 
         show_index_historical_data(index_name)
@@ -125,4 +150,4 @@ match select_index:
         growth_plot(index_name)
 
 
-st.write(index_name)
+st.write(m.get_components(components_url))
