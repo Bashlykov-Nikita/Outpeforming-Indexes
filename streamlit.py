@@ -41,7 +41,7 @@ def show_index_historical_data(name):
 
 @st.cache_data
 def show_stats(name):
-    m_ind_data = pd.DataFrame(m.resample_data(m.fetch_index_data(name)))
+    m_ind_data = pd.DataFrame(m.resample_data(m.fetch_index_data(name))["Return"])
     stats_df = c.summary_stats(m_ind_data)
     st.write(stats_df)
 
@@ -150,4 +150,6 @@ match select_index:
         growth_plot(index_name)
 
 
-st.write(m.get_components(components_url))
+# st.write(m.companies_returns_df(m.get_components(components_url)))
+# st.write(m.test(m.get_components(components_url)))
+st.write(m.test1(m.get_components(components_url)))
