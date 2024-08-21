@@ -50,64 +50,23 @@ def get_components(url):
 
 
 def companies_returns_df(companies):
-    companies_returns = pd.DataFrame()
-    i = 0
-    # for company_name in companies:
-    #     company = yf.Ticker(company_name)
-    #     company = company.history(period="max")
-    #     company = company["1990":].copy()
-    #     company[f"{company_name}"] = (company["Close"] - company["Open"]) / company[
-    #         "Open"
-    #     ]
-    #     company = company.dropna()
-    #     companies_returns.insert(
-    #         loc=i, column=f"{company_name}", value=company[f"{company_name}"]
-    #     )
-    # i = i + 1
-    while i < companies.shape[0]:
-        company = yf.Ticker(companies[i]).history(period="max")
+    tickers = companies
+    first_ticker_data = yf.download(companies[0], period="max")
+    # Create an empty DataFrame with a single row
+    companies_df = pd.DataFrame(index=first_ticker_data.index, columns=tickers)
 
-    return companies_returns
-
-
-def test(companies):
-    # company = yf.Ticker(companies[0])
-    # company = company.history(period="max")
-    # company.index = company.index.to_period("D")
-    # company = resample_data(company)
-    i = 0
-    # for company_name in companies:
-    while i < companies.shape[0]:
+    # Fetch historical data for each ticker and populate the DataFrame
+    for ticker in tickers:
         try:
-            c_h = fetch_index_data(companies[i])
-            i = i + 1
-        except:
-            return i
-    return c_h
-
-
-def test1(companies):
-    i = 0
-    test_df = pd.DataFrame()
-    # if (yf.Ticker(companies[7]).history(period="max")).empty:
-    #     return False
-    # else:
-    #     return yf.Ticker(companies[7]).history(period="max")
-    # while i < companies.shape[0]:
-    #     company = yf.Ticker(companies[i]).history(period="max")
-    #     if company.empty:
-    #         test_df.insert(loc=i, column=f"{companies[i]}", value=0)
-    #         i = i + 1
-    #     else:
-    #         test_df.insert(loc=i, column=f"{companies[i]}", value=1)
-    #         i = i + 1
-    for company in companies:
-        company = yf.Ticker(companies[i]).history(period="max")
-        if company.empty:
-            test_df.insert(loc=i, column=f"{companies[i]}", value=0)
-            i = i + 1
-        else:
-            test_df.insert(loc=i, column=f"{companies[i]}", value=1)
-            i = i + 1
-
-    return test_df
+            data = yf.download(ticker, period="max")
+            if data.empty:
+                companies_df[ticker] = 0
+            else:
+                data["Return"] = (data["Close"] - data["Open"]) / data["Open"]
+                companies_df[ticker] = data["Return"]
+        except Exception as e:
+            print(f"Error fetching data for {ticker}: {e}")
+            companies_df[ticker] = (
+                None  # Or handle the error differently, e.g., fill with 0
+            )
+    return companies_df

@@ -152,4 +152,4 @@ match select_index:
 
 # st.write(m.companies_returns_df(m.get_components(components_url)))
 # st.write(m.test(m.get_components(components_url)))
-st.write(m.test1(m.get_components(components_url)))
+st.write(m.companies_returns_df(m.get_components(components_url)))
