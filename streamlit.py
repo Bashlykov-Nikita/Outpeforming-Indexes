@@ -17,6 +17,7 @@ with st.sidebar:
     select_index = st.selectbox(
         "Choose Index",
         (
+            "None",
             "S&P 500",
             "Nasdaq Composite",
             "Dow Jones Industrial Average",
@@ -34,29 +35,31 @@ with st.sidebar:
     )
 
 
-@st.cache_data
+# @st.cache_data
 def show_index_historical_data(name):
     st.write(m.fetch_index_data(name))
 
 
-@st.cache_data
+# @st.cache_data
 def show_stats(name):
     m_ind_data = pd.DataFrame(m.resample_data(m.fetch_index_data(name))["Return"])
     stats_df = c.summary_stats(m_ind_data)
     st.write(stats_df)
 
 
-@st.cache_data
+# @st.cache_data
 def growth_plot(name):
-    st.line_chart(data=(1 + m.data_for_plots(name)).cumprod(), y="Return")
+    st.line_chart(data=(1 + m.fetch_index_data(name, True)).cumprod(), y="Return")
 
 
 match select_index:
+    case "None":
+        # TODO: Starting page
+        st.write("Choose index you want to ouperform")
+
     case "S&P 500":
         index_name = "^GSPC"
-        components_url = (
-            "https://yfiua.github.io/index-constituents/constituents-sp500.csv"
-        )
+        components_returns_url = 0
 
         st.write("S&P 500 historical data:")
 
@@ -66,9 +69,7 @@ match select_index:
 
     case "Nasdaq Composite":
         index_name = "^IXIC"
-        components_url = (
-            "https://yfiua.github.io/index-constituents/constituents-nasdaq100.csv"
-        )
+        components_returns_url = 1
 
         st.write("Nasdaq Composite historical data:")
 
@@ -78,9 +79,7 @@ match select_index:
 
     case "Dow Jones Industrial Average":
         index_name = "^DJI"
-        components_url = (
-            "https://yfiua.github.io/index-constituents/constituents-dowjones.csv"
-        )
+        components_returns_url = 2
 
         st.write("Dow Jones Industrial Average historical data:")
 
@@ -90,7 +89,7 @@ match select_index:
 
     case "Russell 2000":
         index_name = "^RUT"
-        components_url = None
+        components_returns_url = None
         st.write("Russell 2000 historical data:")
 
         show_index_historical_data(index_name)
@@ -99,9 +98,7 @@ match select_index:
 
     case "FTSE 100":
         index_name = "^FTSE"
-        components_url = (
-            "https://yfiua.github.io/index-constituents/constituents-ftse100.csv"
-        )
+        components_returns_url = 3
 
         st.write("FTSE 100 historical data:")
 
@@ -111,9 +108,7 @@ match select_index:
 
     case "DAX PERFORMANCE-INDEX":
         index_name = "^GDAXI"
-        components_url = (
-            "https://yfiua.github.io/index-constituents/constituents-dax.csv"
-        )
+        components_returns_url = 4
         st.write("DAX PERFORMANCE-INDEX historical data:")
 
         show_index_historical_data(index_name)
@@ -122,7 +117,7 @@ match select_index:
 
     case "CAC 40":
         index_name = "^FCHI"
-        components_url = None
+        components_returns_url = None
         st.write("CAC 40 historical data:")
 
         show_index_historical_data(index_name)
@@ -131,7 +126,7 @@ match select_index:
 
     case "Nikkei 225":
         index_name = "^N225"
-        components_url = None
+        components_returns_url = None
         st.write("Nikkei 225 historical data:")
 
         show_index_historical_data(index_name)
@@ -140,16 +135,9 @@ match select_index:
 
     case "HANG SENG INDEX":
         index_name = "^HSI"
-        components_url = (
-            "https://yfiua.github.io/index-constituents/constituents-hsi.csv"
-        )
+        components_returns_url = 5
         st.write("HANG SENG INDEX historical data:")
 
         show_index_historical_data(index_name)
         show_stats(index_name)
         growth_plot(index_name)
-
-
-# st.write(m.companies_returns_df(m.get_components(components_url)))
-# st.write(m.test(m.get_components(components_url)))
-st.write(m.companies_returns_df(m.get_components(components_url)))
