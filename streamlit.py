@@ -1,8 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import main as m
-import calc as c
+import show
 import time
 import matplotlib.pyplot as plt
 
@@ -37,23 +36,6 @@ with st.sidebar:
     )
 
 
-# @st.cache_data
-def show_index_historical_data(name):
-    st.write(m.fetch_index_data(name))
-
-
-# @st.cache_data
-def show_stats(name):
-    m_ind_data = pd.DataFrame(m.resample_data(m.fetch_index_data(name))["Return"])
-    stats_df = c.summary_stats(m_ind_data)
-    st.write(stats_df)
-
-
-# @st.cache_data
-def growth_plot(name):
-    st.line_chart(data=(1 + m.fetch_index_data(name, True)).cumprod(), y="Return")
-
-
 match select_index:
     case "None":
         # TODO: Starting page
@@ -65,19 +47,19 @@ match select_index:
 
         st.write("S&P 500 historical data:")
 
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
+        show.show_index_historical_data(index_name)
+        show.show_stats(index_name)
+        show.growth_plot(index_name)
 
-    case "Nasdaq Composite":
+    case "Nasdaq 100":
         index_name = "^IXIC"
         components_returns_url = 1
 
         st.write("Nasdaq Composite historical data:")
 
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
+        show.show_index_historical_data(index_name)
+        show.show_stats(index_name)
+        show.growth_plot(index_name)
 
     case "Dow Jones Industrial Average":
         index_name = "^DJI"
@@ -85,18 +67,9 @@ match select_index:
 
         st.write("Dow Jones Industrial Average historical data:")
 
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
-
-    case "Russell 2000":
-        index_name = "^RUT"
-        components_returns_url = None
-        st.write("Russell 2000 historical data:")
-
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
+        show.show_index_historical_data(index_name)
+        show.show_stats(index_name)
+        show.growth_plot(index_name)
 
     case "FTSE 100":
         index_name = "^FTSE"
@@ -104,42 +77,57 @@ match select_index:
 
         st.write("FTSE 100 historical data:")
 
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
+        show.show_index_historical_data(index_name)
+        show.show_stats(index_name)
+        show.growth_plot(index_name)
 
     case "DAX PERFORMANCE-INDEX":
         index_name = "^GDAXI"
         components_returns_url = 4
         st.write("DAX PERFORMANCE-INDEX historical data:")
 
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
+        show.show_index_historical_data(index_name)
+        show.show_stats(index_name)
+        show.growth_plot(index_name)
 
     case "CAC 40":
         index_name = "^FCHI"
         components_returns_url = None
         st.write("CAC 40 historical data:")
 
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
+        show.show_index_historical_data(index_name)
+        show.show_stats(index_name)
+        show.growth_plot(index_name)
 
     case "Nikkei 225":
         index_name = "^N225"
         components_returns_url = None
         st.write("Nikkei 225 historical data:")
 
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
+        show.show_index_historical_data(index_name)
+        show.show_stats(index_name)
+        show.growth_plot(index_name)
 
     case "HANG SENG INDEX":
         index_name = "^HSI"
         components_returns_url = 5
         st.write("HANG SENG INDEX historical data:")
 
-        show_index_historical_data(index_name)
-        show_stats(index_name)
-        growth_plot(index_name)
+        show.show_index_historical_data(index_name)
+        show.show_stats(index_name)
+        show.growth_plot(index_name)
+
+
+match select_cov:
+    case "Sample":
+        cov = "Sample"
+    case "Constant Correlation":
+        cov = "CCM"
+    case "Shinkage":
+        cov = "Shinkage"
+
+match select_er:
+    case "Average":
+        er = "Average"
+    case "Exponentially Weighted Average":
+        er = "EWA"
