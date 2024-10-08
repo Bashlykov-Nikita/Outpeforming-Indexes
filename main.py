@@ -56,6 +56,3 @@ def resample_data(index_data):
     index_data = index_data.to_timestamp()
     index_data_m = index_data.resample("M").apply(c.compound).to_period("M")
     return index_data_m
-
-
-# Calculating all the history returns for all companies

@@ -19,9 +19,8 @@ with st.sidebar:
         (
             "None",
             "S&P 500",
-            "Nasdaq Composite",
+            "Nasdaq 100",
             "Dow Jones Industrial Average",
-            "Russell 2000",
             "FTSE 100",
             "DAX PERFORMANCE-INDEX",
             "CAC 40",
@@ -31,7 +30,10 @@ with st.sidebar:
     )
 
     select_cov = st.selectbox(
-        "Select Covariance", ("Sample", "Elton-Gruber", "Shinkage")
+        "Select Covariance", ("Sample", "Constant Correlation", "Shinkage")
+    )
+    select_er = st.selectbox(
+        "Select Expected Return", ("Average", "Exponentially Weighted Average")
     )
 
 
