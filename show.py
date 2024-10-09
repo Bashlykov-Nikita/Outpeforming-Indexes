@@ -12,6 +12,7 @@ def show_index_historical_data(name):
 
 # @st.cache_data
 def show_stats(name):
+    # TODO: if resample
     m_ind_data = pd.DataFrame(m.resample_data(m.fetch_index_data(name))["Return"])
     stats_df = c.summary_stats(m_ind_data)
     st.write(

@@ -1,13 +1,17 @@
 import streamlit as st
-import numpy as np
-import pandas as pd
 import show
-import time
-import matplotlib.pyplot as plt
 
 
-st.title("Outperforming Indexes")
+st.set_page_config(
+    page_title="Outperforming Indexes",
+    page_icon=":chart_with_upwards_trend:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+st.title(":chart: Outperforming the Indexes")
 st.markdown(" Data from Yahoo Finance ")
+
 
 with st.sidebar:
 
