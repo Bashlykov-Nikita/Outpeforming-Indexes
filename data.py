@@ -3,6 +3,7 @@ import pandas as pd
 # * File with url constatns:
 
 INDEXES = [
+    "None",
     "SP500",
     "Nasdaq100",
     "DowJones",
@@ -12,6 +13,9 @@ INDEXES = [
     "Nikkei225",
     "HSI",
 ]
+
+COV = ["Sample", "Constant Correlation", "Shinkage"]
+ER = ["Average", "Exponentially Weighted Average"]
 
 BACKTEST = {
     name: f"https://github.com/Bashlykov-Nikita/Creating-Portfolio/blob/main/backtest_portfolios_data/{name}_backtest_portfolios.csv?raw=true"

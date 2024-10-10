@@ -12,3 +12,4 @@ st.write("### :bar_chart: Used data")
 
 st.write(st.session_state["select_cov"])
 st.write(st.session_state["select_er"])
+st.write(st.session_state["select_index"])

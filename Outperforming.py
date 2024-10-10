@@ -1,12 +1,13 @@
 import streamlit as st
+import data as d
 import show
 
-if "key" not in st.session_state:
-    st.session_state["key"] = "value"
+if "select_index" not in st.session_state:
+    st.session_state["select_index"] = "None"
 if "select_cov" not in st.session_state:
-    st.session_state["select_cov"] = None
+    st.session_state["select_cov"] = "Sample"
 if "select_er" not in st.session_state:
-    st.session_state["select_er"] = None
+    st.session_state["select_er"] = "Average"
 
 st.set_page_config(
     page_title="Outperforming Indexes",
@@ -20,46 +21,27 @@ st.markdown(" Data from Yahoo Finance ")
 
 
 with st.sidebar:
-
     st.title("Options")
 
-    select_index = st.selectbox(
-        "Choose Index",
-        (
-            "None",
-            "S&P 500",
-            "Nasdaq 100",
-            "Dow Jones Industrial Average",
-            "FTSE 100",
-            "DAX PERFORMANCE-INDEX",
-            "CAC 40",
-            "Nikkei 225",
-            "HANG SENG INDEX",
-        ),
+    st.session_state.select_index = st.selectbox(
+        label="Choose Index",
+        options=d.INDEXES,
+        index=(d.INDEXES.index(st.session_state["select_index"])),
     )
 
-    st.session_state.select_cov = (
-        st.selectbox(
-            "Select Covariance",
-            ("Sample", "Constant Correlation", "Shinkage"),
-            ["Sample", "CCM", "Shinkage"].index(st.session_state["select_cov"]),
-        )
-        if st.session_state.select_cov is not None
-        else "Sample"
+    st.session_state.select_cov = st.selectbox(
+        label="Select Covariance",
+        options=d.COV,
+        index=(d.COV.index(st.session_state["select_cov"])),
     )
-    # st.session_state.user_choices["Select Covariance"] = select_cov
-    st.session_state.select_er = (
-        st.selectbox(
-            "Select Expected Return",
-            ("Average", "Exponentially Weighted Average"),
-            ["Average", "EWA"].index(st.session_state["select_er"]),
-        )
-        if st.session_state.select_er is not None
-        else "Average"
+    st.session_state.select_er = st.selectbox(
+        label="Select Expected Return",
+        options=d.ER,
+        index=(d.ER.index(st.session_state["select_er"])),
     )
-    select_er = st.session_state.select_er
-    select_cov = st.session_state.select_cov
-
+select_er = st.session_state.select_er
+select_cov = st.session_state.select_cov
+select_index = st.session_state.select_index
 match select_index:
     case "None":
         # TODO: Starting page
@@ -157,5 +139,6 @@ match select_er:
         er = "EWA"
 
 
-st.session_state["select_cov"] = cov
-st.session_state["select_er"] = er
+# st.session_state["select_cov"] = cov
+
+# st.session_state["select_er"] = er
