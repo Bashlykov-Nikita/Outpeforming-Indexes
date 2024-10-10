@@ -10,5 +10,5 @@ st.set_page_config(
 
 st.write("### :bar_chart: Used data")
 
-st.write(Out.select_index)
-st.write(Out.select_index)
+st.write(st.session_state["select_cov"])
+st.write(st.session_state["select_er"])

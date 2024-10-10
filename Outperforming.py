@@ -1,6 +1,11 @@
 import streamlit as st
 import show
 
+if "key" not in st.session_state:
+    st.session_state["key"] = "value"
+if "select_cov" not in st.session_state:
+    st.session_state["select_cov"] = None
+
 
 st.set_page_config(
     page_title="Outperforming Indexes",
@@ -32,13 +37,20 @@ with st.sidebar:
         ),
     )
 
-    select_cov = st.selectbox(
-        "Select Covariance", ("Sample", "Constant Correlation", "Shinkage")
+    st.session_state.select_cov = (
+        st.selectbox(
+            "Select Covariance",
+            ("Sample", "Constant Correlation", "Shinkage"),
+            ["Sample", "CCM", "Shinkage"].index(st.session_state["select_cov"]),
+        )
+        if st.session_state.select_cov is not None
+        else 0
     )
+    # st.session_state.user_choices["Select Covariance"] = select_cov
     select_er = st.selectbox(
         "Select Expected Return", ("Average", "Exponentially Weighted Average")
     )
-
+    select_cov = st.session_state.select_cov
 
 match select_index:
     case "None":
@@ -135,3 +147,7 @@ match select_er:
         er = "Average"
     case "Exponentially Weighted Average":
         er = "EWA"
+
+
+st.session_state["select_cov"] = cov
+st.session_state["select_er"] = er
