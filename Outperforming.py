@@ -5,7 +5,8 @@ if "key" not in st.session_state:
     st.session_state["key"] = "value"
 if "select_cov" not in st.session_state:
     st.session_state["select_cov"] = None
-
+if "select_er" not in st.session_state:
+    st.session_state["select_er"] = None
 
 st.set_page_config(
     page_title="Outperforming Indexes",
@@ -44,12 +45,19 @@ with st.sidebar:
             ["Sample", "CCM", "Shinkage"].index(st.session_state["select_cov"]),
         )
         if st.session_state.select_cov is not None
-        else 0
+        else "Sample"
     )
     # st.session_state.user_choices["Select Covariance"] = select_cov
-    select_er = st.selectbox(
-        "Select Expected Return", ("Average", "Exponentially Weighted Average")
+    st.session_state.select_er = (
+        st.selectbox(
+            "Select Expected Return",
+            ("Average", "Exponentially Weighted Average"),
+            ["Average", "EWA"].index(st.session_state["select_er"]),
+        )
+        if st.session_state.select_er is not None
+        else "Average"
     )
+    select_er = st.session_state.select_er
     select_cov = st.session_state.select_cov
 
 match select_index:
