@@ -2,28 +2,27 @@ import pandas as pd
 
 # * File with url constatns:
 
-INDEXES = [
-    "None",
-    "SP500",
-    "Nasdaq100",
-    "DowJones",
-    "FTSE100",
-    "DAX",
-    "CAC40",
-    "Nikkei225",
-    "HSI",
-]
+INDEXES = {
+    "SP500": "^GSPC",
+    "Nasdaq100": "^IXIC",
+    "DowJones": "^DJI",
+    "FTSE100": "^FTSE",
+    "DAX": "^GDAXI",
+    "CAC40": "^FCHI",
+    "Nikkei225": "^N225",
+    "HSI": "^HSI",
+}
 
-COV = ["Sample", "Constant Correlation", "Shinkage"]
-ER = ["Average", "Exponentially Weighted Average"]
+COV = {"Sample": "Sample", "Constant Correlation": "CCM", "Shinkage": "Shinkage"}
+ER = {"Average": "Average", "Exponentially Weighted Average": "EWA"}
 
 BACKTEST = {
     name: f"https://github.com/Bashlykov-Nikita/Creating-Portfolio/blob/main/backtest_portfolios_data/{name}_backtest_portfolios.csv?raw=true"
-    for name in INDEXES
+    for name in INDEXES.keys()
 }
 PORTFOLIOS_WEIGHTS = {
     name: f"https://github.com/Bashlykov-Nikita/Creating-Portfolio/blob/main/portfolios_data/{name}_portfolios.csv?raw=true"
-    for name in INDEXES
+    for name in INDEXES.keys()
 }
 
 

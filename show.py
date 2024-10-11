@@ -1,7 +1,11 @@
+import sys
+
+sys.dont_write_bytecode = True
 import pandas as pd
 import streamlit as st
 import main as m
 import calc as c
+import data as d
 
 # @st.cache_data
 
@@ -33,3 +37,15 @@ def growth_plot(name):
 
 
 # TODO: One show function for index
+
+
+def show_index_data(index_name: str):
+    if index_name == "None":
+        # TODO: Starting Page
+        st.write("Choose Index")
+    else:
+        index_short_name = d.INDEXES[index_name]
+        st.write(f"{index_name} historical data:")
+        show_index_historical_data(index_short_name)
+        show_stats(index_short_name)
+        growth_plot(index_short_name)

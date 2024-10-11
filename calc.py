@@ -1,3 +1,6 @@
+import sys
+
+sys.dont_write_bytecode = True
 import numpy as np
 import pandas as pd
 from scipy.stats import norm
