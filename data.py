@@ -13,7 +13,7 @@ INDEXES = {
     "HSI": "^HSI",
 }
 
-COV = {"Sample": "Sample", "Constant Correlation": "CCM", "Shinkage": "Shinkage"}
+COV = {"Sample": "Sample", "Constant Correlation": "CCM", "Shrinkage": "Shrinkage"}
 ER = {"Average": "Average", "Exponentially Weighted Average": "EWA"}
 
 BACKTEST = {

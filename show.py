@@ -10,8 +10,35 @@ import data as d
 # @st.cache_data
 
 
-def show_index_historical_data(name):
-    st.write(m.fetch_index_data(name))
+def show_df(df: pd.DataFrame):
+    st.write(df)
+
+
+def show_index_hist_data(short_name: str):
+    if short_name == "None":
+        st.write("Choose Index")
+    else:
+        st.write(m.fetch_index_data(short_name))
+
+
+def show_portfolios_weights_and_backtest(
+    index_name: str, cov: str, er: str, backtest=False
+):
+    cov_short = d.COV[cov]
+    er_short = d.ER[er]
+    portfolios_names_arr = [
+        f"MSR_{cov_short}_{er_short}",
+        f"GMV_{cov_short}",
+        "EW",
+        "CW",
+        f"ERC_{cov_short}",
+    ]
+    if backtest:
+        # ? CW currently not available
+        without_cw = portfolios_names_arr.remove("CW")
+        show_df(d.get_df(d.BACKTEST[index_name])[without_cw])
+    else:
+        show_df(d.get_df(d.PORTFOLIOS_WEIGHTS[index_name])[portfolios_names_arr])
 
 
 # @st.cache_data
@@ -46,6 +73,6 @@ def show_index_data(index_name: str):
     else:
         index_short_name = d.INDEXES[index_name]
         st.write(f"{index_name} historical data:")
-        show_index_historical_data(index_short_name)
+        show_index_hist_data(index_short_name)
         show_stats(index_short_name)
         growth_plot(index_short_name)

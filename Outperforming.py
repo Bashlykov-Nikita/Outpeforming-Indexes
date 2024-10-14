@@ -55,8 +55,8 @@ match select_cov:
         cov = "Sample"
     case "Constant Correlation":
         cov = "CCM"
-    case "Shinkage":
-        cov = "Shinkage"
+    case "Shrinkage":
+        cov = "Shrinkage"
 
 match select_er:
     case "Average":
