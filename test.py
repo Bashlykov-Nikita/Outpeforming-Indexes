@@ -14,5 +14,6 @@ p_arr = [
     "CW",
     f"ERC_{cov_short}",
 ]
-p_arr2 = p_arr.remove("CW")
+p_arr2 = p_arr[:3] + p_arr[4:]
 test1 = d.get_df(d.BACKTEST["SP500"])[p_arr2]
+test1.head()

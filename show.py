@@ -15,10 +15,7 @@ def show_df(df: pd.DataFrame):
 
 
 def show_index_hist_data(short_name: str):
-    if short_name == "None":
-        st.write("Choose Index")
-    else:
-        st.write(m.fetch_index_data(short_name))
+    st.write(m.fetch_index_data(short_name))
 
 
 def show_portfolios_weights_and_backtest(
@@ -35,7 +32,7 @@ def show_portfolios_weights_and_backtest(
     ]
     if backtest:
         # ? CW currently not available
-        without_cw = portfolios_names_arr.remove("CW")
+        without_cw = portfolios_names_arr[:3] + portfolios_names_arr[4:]
         show_df(d.get_df(d.BACKTEST[index_name])[without_cw])
     else:
         show_df(d.get_df(d.PORTFOLIOS_WEIGHTS[index_name])[portfolios_names_arr])
@@ -72,7 +69,5 @@ def show_index_data(index_name: str):
         st.write("Choose Index")
     else:
         index_short_name = d.INDEXES[index_name]
-        st.write(f"{index_name} historical data:")
-        show_index_hist_data(index_short_name)
         show_stats(index_short_name)
         growth_plot(index_short_name)
