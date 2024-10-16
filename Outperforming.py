@@ -4,7 +4,8 @@ sys.dont_write_bytecode = True
 import streamlit as st
 import data as d
 import show
-import main as m
+
+# import main as m
 
 if "select_index" not in st.session_state:
     st.session_state["select_index"] = "None"
@@ -60,31 +61,30 @@ selected_portfolio = st.selectbox(
     label="Select Portfolio", options=add_none_to_list(list(d.PORTFOLIOS_NAMES.keys()))
 )
 
-st.write(m.select_portfolio_name(selected_portfolio, selected_cov, selected_er))
-chosen_portfolio = m.select_portfolio_name(
-    selected_portfolio, selected_cov, selected_er
-)
-weights = m.get_certain_portfolio(selected_index, chosen_portfolio)[0]
-# show.show_df(d.get_df(d.PORTFOLIOS_WEIGHTS[selected_index])[chosen_portfolio])
-st.write(weights)
+# if selected_index != "None" and selected_portfolio != "None":
+#     chosen_portfolio = m.select_portfolio_name(
+#         selected_portfolio, selected_cov, selected_er
+#     )
+#     weights = m.get_certain_portfolio(selected_index, chosen_portfolio)[0]
+#     backtest = m.get_certain_portfolio(selected_index, chosen_portfolio)[1]
 
-total1, total2, total3, total4, total5 = st.columns(5, gap="small")
-with total1:
-    st.info("Sum Investment", icon="💰")
-    st.metric(label="Sum TZS", value=f"{1:,.0f}")
+#     total1, total2, total3, total4, total5 = st.columns(5, gap="small")
+#     with total1:
+#         st.info("Sum Investment", icon="💰")
+#         st.metric(label="Sum TZS", value=f"{1:,.0f}")
 
-with total2:
-    st.info("Most Investment", icon="💰")
-    st.metric(label="Mode TZS", value=f"{2:,.0f}")
+#     with total2:
+#         st.info("Most Investment", icon="💰")
+#         st.metric(label="Mode TZS", value=f"{2:,.0f}")
 
-with total3:
-    st.info("Average", icon="💰")
-    st.metric(label="Average TZS", value=f"{3:,.0f}")
+#     with total3:
+#         st.info("Average", icon="💰")
+#         st.metric(label="Average TZS", value=f"{3:,.0f}")
 
-with total4:
-    st.info("Central Earnings", icon="💰")
-    st.metric(label="Median TZS", value=f"{4:,.0f}")
+#     with total4:
+#         st.info("Central Earnings", icon="💰")
+#         st.metric(label="Median TZS", value=f"{4:,.0f}")
 
-with total5:
-    st.info("Ratings", icon="💰")
-    st.metric(label="Rating", value=5, help=f""" Total Rating: {5} """)
+#     with total5:
+#         st.info("Ratings", icon="💰")
+#         st.metric(label="Rating", value=5, help=f""" Total Rating: {5} """)

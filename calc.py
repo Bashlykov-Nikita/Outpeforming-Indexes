@@ -6,6 +6,19 @@ import pandas as pd
 from scipy.stats import norm
 
 
+def calculate_return(data):
+    """
+    Calculate the return on an investment based on the given data.
+
+    Parameters:
+    - data (pandas.DataFrame): A DataFrame containing at least "Open" and "Close" columns.
+
+    Returns:
+    - pandas.Series: A Series representing the calculated returns.
+    """
+    return (data["Close"] - data["Open"]) / data["Open"]
+
+
 def compound(r):
     """
     returns the result of compounding the set of returns in r

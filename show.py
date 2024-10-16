@@ -6,6 +6,7 @@ import streamlit as st
 import main as m
 import calc as c
 import data as d
+import get
 
 # @st.cache_data
 
@@ -15,7 +16,7 @@ def show_df(df: pd.DataFrame):
 
 
 def show_index_hist_data(short_name: str):
-    st.write(m.fetch_index_data(short_name))
+    st.write(get.get_index_data(short_name))
 
 
 def show_portfolios_weights_and_backtest(
@@ -33,15 +34,15 @@ def show_portfolios_weights_and_backtest(
     if backtest:
         # ? CW currently not available
         without_cw = portfolios_names_arr[:3] + portfolios_names_arr[4:]
-        show_df(d.get_df(d.BACKTEST[index_name])[without_cw])
+        show_df(get.get_df(d.BACKTEST[index_name])[without_cw])
     else:
-        show_df(d.get_df(d.PORTFOLIOS_WEIGHTS[index_name])[portfolios_names_arr])
+        show_df(get.get_df(d.PORTFOLIOS_WEIGHTS[index_name])[portfolios_names_arr])
 
 
 # @st.cache_data
 def show_stats(name):
     # TODO: if resample
-    m_ind_data = pd.DataFrame(m.resample_data(m.fetch_index_data(name))["Return"])
+    m_ind_data = pd.DataFrame(m.resample_data(get.get_index_data(name))["Return"])
     stats_df = c.summary_stats(m_ind_data)
     st.write(
         stats_df[
@@ -57,7 +58,7 @@ def show_stats(name):
 
 # @st.cache_data
 def growth_plot(name):
-    st.line_chart(data=(1 + m.fetch_index_data(name, True)).cumprod(), y="Return")
+    st.line_chart(data=(1 + get.get_index_data(name, True)).cumprod(), y="Return")
 
 
 # TODO: One show function for index

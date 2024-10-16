@@ -31,15 +31,3 @@ PORTFOLIOS_WEIGHTS = {
     name: f"https://github.com/Bashlykov-Nikita/Creating-Portfolio/blob/main/portfolios_data/{name}_portfolios.csv?raw=true"
     for name in INDEXES.keys()
 }
-
-
-def get_df(url: str) -> pd.DataFrame:
-    """Reads a CSV file from the specified URL and returns a DataFrame.
-
-    Args:
-        url (str): The URL of the CSV file to read.
-
-    Returns:
-        pd.DataFrame: A pandas DataFrame containing the data from the CSV file.
-    """
-    return pd.read_csv(url, index_col=0)
