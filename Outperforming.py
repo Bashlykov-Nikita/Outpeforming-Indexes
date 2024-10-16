@@ -3,6 +3,7 @@ import sys
 sys.dont_write_bytecode = True
 import streamlit as st
 import data as d
+import calc as c
 import utils as u
 import get
 import show
@@ -65,9 +66,19 @@ selected_portfolio = st.selectbox(
 
 
 if selected_index != "None" and selected_portfolio != "None":
-    all_portfolios = get.get_all_portfolios(selected_index, selected_cov, selected_er)
-    show.show_df(all_portfolios)
-    show.show_df(get.get_certain_portfolio(all_portfolios, selected_portfolio))
+    all_portfolios_weights = get.get_all_portfolios(
+        selected_index, selected_cov, selected_er
+    )
+    all_portfolios_backtest = get.get_all_portfolios(
+        selected_index, selected_cov, selected_er, backtest=True
+    )
+    chosen_portfolio = get.get_certain_portfolio(
+        all_portfolios_backtest, selected_portfolio
+    )
+    portfolio_stats = c.summary_stats(chosen_portfolio)
+
+    # show.show_df(all_portfolios)
+    # show.show_df(get.get_certain_portfolio(all_portfolios, selected_portfolio))
 #     weights = m.get_certain_portfolio(selected_index, chosen_portfolio)[0]
 #     backtest = m.get_certain_portfolio(selected_index, chosen_portfolio)[1]
 

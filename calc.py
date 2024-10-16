@@ -156,7 +156,7 @@ def cvar_historic(r, level=5):
 
 
 # shows stats dataframe
-def summary_stats(r, riskfree_rate=0.03):
+def summary_stats(r: pd.Series, riskfree_rate=0.03) -> pd.DataFrame:
     """
     Return a DataFrame that contains aggregated summary stats for the returns in the columns of r
     """
@@ -178,5 +178,6 @@ def summary_stats(r, riskfree_rate=0.03):
             "Historic CVaR (5%)": hist_cvar5,
             "Sharpe Ratio": ann_sr,
             "Max Drawdown": dd,
-        }
+        },
+        index=[r.name],
     )

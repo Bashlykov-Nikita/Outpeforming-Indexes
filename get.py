@@ -86,14 +86,15 @@ def get_all_portfolios(
 def get_certain_portfolio(
     all_portfolios: pd.DataFrame, portfolio_name: str
 ) -> pd.DataFrame:
-    """Finds a column in the DataFrame that starts with the given prefix.
+    """
+    Get a specific portfolio from a DataFrame based on the portfolio name prefix.
 
     Args:
-        df: The DataFrame to search.
-        prefix: The prefix to match.
+        all_portfolios (pd.DataFrame): DataFrame containing portfolios data.
+        portfolio_name (str): Name of the portfolio to retrieve.
 
     Returns:
-        The column name if found, or None if not found.
+        pd.DataFrame: DataFrame with the data of the specified portfolio.
     """
     prefix = d.PORTFOLIOS_NAMES[portfolio_name]
     for col in all_portfolios.columns:
