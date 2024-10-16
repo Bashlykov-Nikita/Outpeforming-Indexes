@@ -4,6 +4,7 @@ sys.dont_write_bytecode = True
 import streamlit as st
 import data as d
 import utils as u
+import get
 import show
 
 #! Streamlit page
@@ -62,10 +63,11 @@ selected_portfolio = st.selectbox(
     options=u.add_none_to_list(list(d.PORTFOLIOS_NAMES.keys())),
 )
 
-# if selected_index != "None" and selected_portfolio != "None":
-#     chosen_portfolio = m.select_portfolio_name(
-#         selected_portfolio, selected_cov, selected_er
-#     )
+
+if selected_index != "None" and selected_portfolio != "None":
+    all_portfolios = get.get_all_portfolios(selected_index, selected_cov, selected_er)
+    show.show_df(all_portfolios)
+    show.show_df(get.get_certain_portfolio(all_portfolios, selected_portfolio))
 #     weights = m.get_certain_portfolio(selected_index, chosen_portfolio)[0]
 #     backtest = m.get_certain_portfolio(selected_index, chosen_portfolio)[1]
 

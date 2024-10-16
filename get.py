@@ -21,7 +21,7 @@ def get_df(url: str) -> pd.DataFrame:
     return pd.read_csv(url, index_col=0)
 
 
-def get_index_data(index_name, just_returns=False):
+def get_index_data(index_name: str, just_returns=False) -> pd.DataFrame:
     """
     Fetches historical data for a specified index.
 
@@ -81,3 +81,22 @@ def get_all_portfolios(
         return get_df(d.BACKTEST[index_name])[without_cw]
     else:
         return get_df(d.PORTFOLIOS_WEIGHTS[index_name])[portfolios_names_arr]
+
+
+def get_certain_portfolio(
+    all_portfolios: pd.DataFrame, portfolio_name: str
+) -> pd.DataFrame:
+    """Finds a column in the DataFrame that starts with the given prefix.
+
+    Args:
+        df: The DataFrame to search.
+        prefix: The prefix to match.
+
+    Returns:
+        The column name if found, or None if not found.
+    """
+    prefix = d.PORTFOLIOS_NAMES[portfolio_name]
+    for col in all_portfolios.columns:
+        if col.startswith(prefix):
+            return all_portfolios[col]
+    return None

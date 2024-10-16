@@ -2,11 +2,12 @@ import sys
 
 sys.dont_write_bytecode = True
 import calc as c
+import pandas as pd
 
 # * File with supportive functions
 
 
-def resample_data(index_data):
+def resample_data(index_data: pd.DataFrame) -> pd.DataFrame:
     """
     Resamples the input index data to monthly frequency by compounding the returns and converting the data to monthly periods.
     """

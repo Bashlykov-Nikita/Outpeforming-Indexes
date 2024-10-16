@@ -32,7 +32,7 @@ def show_index_hist_data(short_name: str) -> None:
 
 def show_portfolios_weights_and_backtest(
     index_name: str, cov: str, er: str, backtest=False
-):
+) -> None:
     """Shows portfolios weights or backtest if specified.
 
     Args:
