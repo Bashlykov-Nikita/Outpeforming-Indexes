@@ -2,9 +2,11 @@ import sys
 
 sys.dont_write_bytecode = True
 import pandas as pd
-import numpy as np
 import yfinance as yf
+import data as d
 import calc as c
+
+# * File with get functions
 
 
 def get_df(url: str) -> pd.DataFrame:
@@ -48,3 +50,34 @@ def get_index_data(index_name, just_returns=False):
     except Exception as e:
         print(f"Error fetching data for index: {index_name}. Error: {e}")
         return None
+
+
+def get_all_portfolios(
+    index_name: str, cov: str, er: str, backtest=False
+) -> pd.DataFrame:
+    """Retrieve all portfolios based on the given index, covariance, and expected return.
+
+    Args:
+        index_name (str): Name of the index.
+        cov (str): Type of covariance.
+        er (str): Expected return type.
+        backtest (bool, optional): Flag to indicate backtesting. Defaults to False.
+
+    Returns:
+        pd.DataFrame: DataFrame containing portfolios data.
+    """
+    cov_short = d.COV[cov]
+    er_short = d.ER[er]
+    portfolios_names_arr = [
+        f"MSR_{cov_short}_{er_short}",
+        f"GMV_{cov_short}",
+        "EW",
+        "CW",
+        f"ERC_{cov_short}",
+    ]
+    if backtest:
+        # ? CW currently not available
+        without_cw = portfolios_names_arr[:3] + portfolios_names_arr[4:]
+        return get_df(d.BACKTEST[index_name])[without_cw]
+    else:
+        return get_df(d.PORTFOLIOS_WEIGHTS[index_name])[portfolios_names_arr]

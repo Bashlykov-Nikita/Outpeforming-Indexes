@@ -3,10 +3,13 @@ import sys
 sys.dont_write_bytecode = True
 import streamlit as st
 import data as d
+import utils as u
 import show
 
-# import main as m
+#! Streamlit page
+# * Main streamlit page file
 
+# ? Initialization of session state
 if "select_index" not in st.session_state:
     st.session_state["select_index"] = "None"
 if "select_cov" not in st.session_state:
@@ -14,6 +17,7 @@ if "select_cov" not in st.session_state:
 if "select_er" not in st.session_state:
     st.session_state["select_er"] = "Average"
 
+# ? Configuring page
 st.set_page_config(
     page_title="Outperforming Indexes",
     page_icon=":chart_with_upwards_trend:",
@@ -24,19 +28,15 @@ st.set_page_config(
 st.title(":chart: Outperforming the Indexes")
 st.markdown(" Data from Yahoo Finance ")
 
-
-def add_none_to_list(l: list):
-    return ["None"] + l
-
-
+# ? Defining sidebar options:
 with st.sidebar:
     st.title("Options")
-
+    # ? Saving chosen options (index, cov, er) to session state:
     st.session_state.select_index = st.selectbox(
         label="Choose Index",
-        options=add_none_to_list(list(d.INDEXES.keys())),
+        options=u.add_none_to_list(list(d.INDEXES.keys())),
         index=(
-            add_none_to_list(list(d.INDEXES.keys())).index(
+            u.add_none_to_list(list(d.INDEXES.keys())).index(
                 st.session_state["select_index"]
             )
         ),
@@ -58,7 +58,8 @@ selected_index = st.session_state.select_index
 
 # show.show_index_data(select_index)
 selected_portfolio = st.selectbox(
-    label="Select Portfolio", options=add_none_to_list(list(d.PORTFOLIOS_NAMES.keys()))
+    label="Select Portfolio",
+    options=u.add_none_to_list(list(d.PORTFOLIOS_NAMES.keys())),
 )
 
 # if selected_index != "None" and selected_portfolio != "None":
