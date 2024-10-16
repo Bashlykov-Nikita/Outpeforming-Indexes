@@ -76,7 +76,7 @@ if selected_index != "None" and selected_portfolio != "None":
         all_portfolios_backtest, selected_portfolio
     )
     portfolio_stats = c.summary_stats(chosen_portfolio)
-
+    show.show_stats(portfolio_stats)
     # show.show_df(all_portfolios)
     # show.show_df(get.get_certain_portfolio(all_portfolios, selected_portfolio))
 #     weights = m.get_certain_portfolio(selected_index, chosen_portfolio)[0]
