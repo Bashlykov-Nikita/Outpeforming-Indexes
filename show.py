@@ -47,6 +47,17 @@ def show_portfolios_weights_and_backtest(
         show_df(get.get_all_portfolios(index_name, cov, er))
 
 
+def show_stats(portfolio_stats: pd.DataFrame) -> None:
+    columns_list = st.columns(len(portfolio_stats.columns), gap="small")
+    for col, i in zip(columns_list, portfolio_stats.columns):
+        with col:
+            st.metric(
+                label=i,
+                value=f"{portfolio_stats[i].values[0]:.4f}",
+                help=f"{d.HELP[i]}",
+            )
+
+
 # @st.cache_data
 # ! Not used
 # ! Remake for new UI:
@@ -65,18 +76,6 @@ def show_index_stats(name, resample):
             ["Skewness", "Kurtosis", "Cornish-Fisher VaR (5%)", "Historic CVaR (5%)"]
         ]
     )
-
-
-def show_stats(portfolio_stats: pd.DataFrame) -> None:
-    columns_list = st.columns(len(portfolio_stats.columns), gap="small")
-    for col, i in zip(columns_list, portfolio_stats.columns):
-        with col:
-            # st.info(f"{i}")
-            st.metric(label=i, value=portfolio_stats[i])
-            # st.write(portfolio_stats.columns[0])
-    # style_metric_cards(
-    #     box_shadow="#F71938",
-    # )
 
 
 def show_growth_plot(name):

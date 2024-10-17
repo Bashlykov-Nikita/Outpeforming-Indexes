@@ -170,12 +170,12 @@ def summary_stats(r: pd.Series, riskfree_rate=0.03) -> pd.DataFrame:
     hist_cvar5 = r.aggregate(cvar_historic)
     return pd.DataFrame(
         {
-            "Annualized Return": ann_r,
-            "Annualized Vol": ann_vol,
+            "Return": ann_r,
+            "Volatility": ann_vol,
             "Skewness": skew,
             "Kurtosis": kurt,
-            "Cornish-Fisher VaR (5%)": cf_var5,
-            "Historic CVaR (5%)": hist_cvar5,
+            "VaR (5%)": cf_var5,
+            "CVaR (5%)": hist_cvar5,
             "Sharpe Ratio": ann_sr,
             "Max Drawdown": dd,
         },
