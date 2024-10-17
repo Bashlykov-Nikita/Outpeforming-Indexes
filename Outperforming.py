@@ -76,8 +76,12 @@ if selected_index != "None" and selected_portfolio != "None":
     all_portfolios_backtest = get.get_all_portfolios(
         selected_index, selected_cov, selected_er, backtest=True
     )
-    chosen_portfolio = get.get_certain_portfolio(
+    chosen_portfolio_weights = get.get_certain_portfolio(
+        all_portfolios_weights, selected_portfolio
+    )
+    chosen_portfolio_backtest = get.get_certain_portfolio(
         all_portfolios_backtest, selected_portfolio
     )
-    portfolio_stats = c.summary_stats(chosen_portfolio)
+    portfolio_stats = c.summary_stats(chosen_portfolio_backtest)
     show.show_stats(portfolio_stats)
+    show.show_portfolios_plots(chosen_portfolio_weights, chosen_portfolio_backtest)

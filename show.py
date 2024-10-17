@@ -58,12 +58,23 @@ def show_stats(portfolio_stats: pd.DataFrame) -> None:
             )
 
 
+def show_growth_plot(bt: pd.Series) -> None:
+    st.line_chart(data=(1 + bt).cumprod())
+
+
+def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
+    growth, top_weights, risc_contribution = st.columns(3, gap="Small")
+    with growth:
+        show_growth_plot(backtest)
+    with top_weights:
+        show_df(weights)
+    with risc_contribution:
+        st.write("None")
+
+
 # @st.cache_data
 # ! Not used
 # ! Remake for new UI:
-
-# def show_growth_plot(name):
-#     st.line_chart(data=(1 + get.get_index_data(name, True)).cumprod(), y="Return")
 
 
 def show_index_data(index_name: str):
