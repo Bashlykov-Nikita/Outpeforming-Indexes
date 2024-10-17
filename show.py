@@ -61,25 +61,9 @@ def show_stats(portfolio_stats: pd.DataFrame) -> None:
 # @st.cache_data
 # ! Not used
 # ! Remake for new UI:
-# TODO: Make general show_stats function
-def show_index_stats(name, resample):
-    # TODO: if resample
-    m_ind_data = pd.DataFrame(u.resample_data(get.get_index_data(name))["Return"])
-    stats_df = c.summary_stats(m_ind_data)
-    st.write(
-        stats_df[
-            ["Annualized Return", "Annualized Vol", "Sharpe Ratio", "Max Drawdown"]
-        ]
-    )
-    st.write(
-        stats_df[
-            ["Skewness", "Kurtosis", "Cornish-Fisher VaR (5%)", "Historic CVaR (5%)"]
-        ]
-    )
 
-
-def show_growth_plot(name):
-    st.line_chart(data=(1 + get.get_index_data(name, True)).cumprod(), y="Return")
+# def show_growth_plot(name):
+#     st.line_chart(data=(1 + get.get_index_data(name, True)).cumprod(), y="Return")
 
 
 def show_index_data(index_name: str):

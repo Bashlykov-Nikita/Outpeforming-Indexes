@@ -28,7 +28,7 @@ st.set_page_config(
 )
 
 st.title(":chart: Outperforming the Indexes")
-st.markdown(" Data from Yahoo Finance ")
+st.caption("_Data from Yahoo Finance_")
 
 # ? Defining sidebar options:
 with st.sidebar:
@@ -58,6 +58,10 @@ selected_er = st.session_state.select_er
 selected_cov = st.session_state.select_cov
 selected_index = st.session_state.select_index
 
+st.write(
+    f"You chose to outperform :green[{selected_index}] with :orange[{selected_cov}] covariance and :orange[{selected_er}] expected return!"
+)
+
 # show.show_index_data(select_index)
 selected_portfolio = st.selectbox(
     label="Select Portfolio",
@@ -77,28 +81,3 @@ if selected_index != "None" and selected_portfolio != "None":
     )
     portfolio_stats = c.summary_stats(chosen_portfolio)
     show.show_stats(portfolio_stats)
-    # show.show_df(all_portfolios)
-    # show.show_df(get.get_certain_portfolio(all_portfolios, selected_portfolio))
-#     weights = m.get_certain_portfolio(selected_index, chosen_portfolio)[0]
-#     backtest = m.get_certain_portfolio(selected_index, chosen_portfolio)[1]
-
-#     total1, total2, total3, total4, total5 = st.columns(5, gap="small")
-#     with total1:
-#         st.info("Sum Investment", icon="💰")
-#         st.metric(label="Sum TZS", value=f"{1:,.0f}")
-
-#     with total2:
-#         st.info("Most Investment", icon="💰")
-#         st.metric(label="Mode TZS", value=f"{2:,.0f}")
-
-#     with total3:
-#         st.info("Average", icon="💰")
-#         st.metric(label="Average TZS", value=f"{3:,.0f}")
-
-#     with total4:
-#         st.info("Central Earnings", icon="💰")
-#         st.metric(label="Median TZS", value=f"{4:,.0f}")
-
-#     with total5:
-#         st.info("Ratings", icon="💰")
-#         st.metric(label="Rating", value=5, help=f""" Total Rating: {5} """)
