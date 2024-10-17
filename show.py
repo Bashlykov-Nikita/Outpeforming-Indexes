@@ -3,6 +3,7 @@ import sys
 sys.dont_write_bytecode = True
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 import utils as u
 import calc as c
 import data as d
@@ -59,7 +60,16 @@ def show_stats(portfolio_stats: pd.DataFrame) -> None:
 
 
 def show_growth_plot(bt: pd.Series) -> None:
+    st.write("Growth plot:")
     st.line_chart(data=(1 + bt).cumprod())
+
+
+def show_bar_chart(w: pd.Series) -> None:
+    fig = px.bar(
+        w.sort_values(ascending=True),
+        orientation="h",
+    )
+    st.write(fig)
 
 
 def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
@@ -67,7 +77,8 @@ def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
     with growth:
         show_growth_plot(backtest)
     with top_weights:
-        show_df(weights)
+        # show_df(weights)
+        show_bar_chart(weights)
     with risc_contribution:
         st.write("None")
 
