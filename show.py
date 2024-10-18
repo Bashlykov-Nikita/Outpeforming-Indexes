@@ -2,6 +2,7 @@ import sys
 
 sys.dont_write_bytecode = True
 import pandas as pd
+import numpy as np
 import streamlit as st
 import plotly.express as px
 import utils as u
@@ -65,11 +66,19 @@ def show_growth_plot(bt: pd.Series) -> None:
 
 
 def show_bar_chart(w: pd.Series) -> None:
+    w = w.sort_values(ascending=True)
+    top_w = (
+        pd.DataFrame({"Companies": w.index, "Weights": w.values})
+        .replace(0, np.NaN)
+        .dropna()
+    )
     fig = px.bar(
-        w.sort_values(ascending=True),
-        orientation="h",
+        top_w,
+        x="Weights",
+        y="Companies",
     )
     st.write(fig)
+    # st.write(top_w)
 
 
 def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
