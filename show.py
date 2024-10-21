@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.express as px
+import plotly.figure_factory as ff
 import utils as u
 import calc as c
 import data as d
@@ -83,7 +84,19 @@ def show_bar_chart(w: pd.Series) -> None:
 
 def show_dist_plot(bt: pd.Series) -> None:
     bt_df = pd.DataFrame({"Date": bt.index, "Returns": bt.values})
-    fig = px.histogram(bt_df["Returns"], histnorm="probability", marginal="box")
+    # fig = px.histogram(bt_df["Returns"], histnorm="probability", marginal="box")
+    # fig = ff.create_distplot(
+    #     [bt_df["Returns"]],
+    #     ["Returns"],
+    #     show_hist=False,
+    # )
+    fig = px.histogram(
+        bt_df["Returns"],
+        x="Returns",
+        histnorm="probability",
+        title="Probability destribution:",
+        # marginal="rug",
+    )
     st.write(fig)
 
 
