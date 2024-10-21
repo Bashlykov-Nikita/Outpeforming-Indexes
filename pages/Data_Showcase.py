@@ -39,7 +39,7 @@ if selected_index != "None":
 
     # ? Show Backtest:
     st.write("#### Backtest data:")
-    st.caption("_Backtest of Cap Weighted portfolio is not done yet._")
+    st.caption("_Backtest of Cap Weighted portfolio has not done yet._")
     show.show_portfolios_weights_and_backtest(
         selected_index, selected_cov, selected_er, backtest=True
     )

@@ -4,11 +4,25 @@ sys.dont_write_bytecode = True
 import numpy as np
 import pandas as pd
 import yfinance as yf
+import plotly.express as px
+import plotly.figure_factory as ff
 import calc as c
 import data as d
 import get
 
-test = get.get_df(d.PORTFOLIOS_WEIGHTS["FTSE100"])["GMV_Sample"]
-test1 = test.sort_values(ascending=False)
-test2 = pd.DataFrame(pd.DataFrame({"Companies": test1.index, "Weights": test1.values}))
-test3 = test2.replace(0, np.nan).dropna(how="any")
+test = get.get_df(d.BACKTEST["SP500"])["GMV_Sample"]
+test1 = pd.DataFrame({"Date": test.index, "Returns": test.values})
+
+fig = px.histogram(test1["Returns"])
+fig.show()
+
+x1 = np.array(test1["Returns"])
+group_label = ["Returns"]
+
+fig = ff.create_distplot(
+    [x1],
+    group_label,
+    bin_size=0.5,
+    curve_type="normal",  # override default 'kde'
+)
+fig.show()

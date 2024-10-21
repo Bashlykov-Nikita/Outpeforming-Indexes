@@ -61,8 +61,11 @@ def show_stats(portfolio_stats: pd.DataFrame) -> None:
 
 
 def show_growth_plot(bt: pd.Series) -> None:
-    st.write("Growth plot:")
-    st.line_chart(data=(1 + bt).cumprod())
+    bt_df = pd.DataFrame({"Timeline": bt.index, "Return": (1 + bt.values).cumprod()})
+    # st.write("Growth plot:")
+    # st.line_chart(data=(1 + bt).cumprod())
+    fig = px.line(bt_df, x="Timeline", y="Return", title="Growth Plot:")
+    st.write(fig)
 
 
 def show_bar_chart(w: pd.Series) -> None:
@@ -71,14 +74,16 @@ def show_bar_chart(w: pd.Series) -> None:
         pd.DataFrame({"Companies": w.index, "Weights": w.values})
         .replace(0, np.NaN)
         .dropna()
+        .drop_duplicates("Companies")
     )
-    fig = px.bar(
-        top_w,
-        x="Weights",
-        y="Companies",
-    )
+    fig = px.bar(top_w, x="Weights", y="Companies", title="Top Weights:")
     st.write(fig)
     # st.write(top_w)
+
+
+def show_dist_plot(bt: pd.Series) -> None:
+    fig = px.histogram(bt.values)
+    st.write(fig)
 
 
 def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
@@ -89,7 +94,7 @@ def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
         # show_df(weights)
         show_bar_chart(weights)
     with risc_contribution:
-        st.write("None")
+        show_dist_plot(backtest)
 
 
 # @st.cache_data
