@@ -82,7 +82,8 @@ def show_bar_chart(w: pd.Series) -> None:
 
 
 def show_dist_plot(bt: pd.Series) -> None:
-    fig = px.histogram(bt.values)
+    bt_df = pd.DataFrame({"Date": bt.index, "Returns": bt.values})
+    fig = px.histogram(bt_df["Returns"], histnorm="probability", marginal="box")
     st.write(fig)
 
 
