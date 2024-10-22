@@ -85,7 +85,9 @@ if selected_index != "None" and selected_portfolio != "None":
         )
         portfolio_stats = c.summary_stats(chosen_portfolio_backtest)
         show.show_stats(portfolio_stats)
-        show.show_portfolios_plots(chosen_portfolio_weights, chosen_portfolio_backtest)
+        show.show_portfolios_plots(
+            chosen_portfolio_weights, chosen_portfolio_backtest, selected_index
+        )
     except Exception as e:
         st.write(
             f"Error fetching data for portfolio :red[{selected_portfolio}]. Error: {e}"

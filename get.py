@@ -5,6 +5,7 @@ import pandas as pd
 import yfinance as yf
 import data as d
 import calc as c
+import utils as u
 
 # * File with get functions
 
@@ -50,6 +51,15 @@ def get_index_data(index_name: str, just_returns=False) -> pd.DataFrame:
     except Exception as e:
         print(f"Error fetching data for index: {index_name}. Error: {e}")
         return None
+
+
+def get_index_returns_for_comp(selected_index: str) -> pd.DataFrame:
+    return (
+        1
+        + u.resample_data(get_index_data(d.INDEXES[selected_index]))["Return"][
+            "2020-01":
+        ]
+    ).cumprod()
 
 
 def get_all_portfolios(

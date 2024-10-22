@@ -61,11 +61,12 @@ def show_stats(portfolio_stats: pd.DataFrame) -> None:
             )
 
 
-def show_growth_plot(bt: pd.Series) -> None:
+def show_growth_plot(bt: pd.Series, selected_index) -> None:
     bt_df = pd.DataFrame({"Timeline": bt.index, "Return": (1 + bt.values).cumprod()})
-    # st.write("Growth plot:")
-    # st.line_chart(data=(1 + bt).cumprod())
-    fig = px.line(bt_df, x="Timeline", y="Return", title="Growth Plot:")
+    bt_df[f"{selected_index}"] = get.get_index_returns_for_comp(selected_index).values
+    fig = px.line(
+        bt_df, x="Timeline", y=["Return", f"{selected_index}"], title="Growth Plot:"
+    )
     st.write(fig)
 
 
@@ -94,16 +95,18 @@ def show_dist_plot(bt: pd.Series) -> None:
         bt_df["Returns"],
         x="Returns",
         histnorm="probability",
-        title="Probability destribution:",
+        title="Probability distribution:",
         # marginal="rug",
     )
     st.write(fig)
 
 
-def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
+def show_portfolios_plots(
+    weights: pd.Series, backtest: pd.Series, index_name: str
+) -> None:
     growth, top_weights, risc_contribution = st.columns(3, gap="Small")
     with growth:
-        show_growth_plot(backtest)
+        show_growth_plot(backtest, index_name)
     with top_weights:
         # show_df(weights)
         show_bar_chart(weights)
