@@ -61,13 +61,24 @@ def show_stats(portfolio_stats: pd.DataFrame) -> None:
             )
 
 
+# TODO: Del index arg
 def show_growth_plot(bt: pd.Series, selected_index) -> None:
     bt_df = pd.DataFrame({"Timeline": bt.index, "Return": (1 + bt.values).cumprod()})
-    bt_df[f"{selected_index}"] = get.get_index_returns_for_comp(selected_index).values
+    # bt_df[f"{selected_index}"] = get.get_index_returns_for_comp(selected_index).values
+    fig = px.line(bt_df, x="Timeline", y="Return", title="Growth Plot:")
+    st.write(fig)
+
+
+#! One show growth
+def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
+    bt[f"{selected_index}"] = get.get_index_returns_for_comp(
+        selected_index, bt.index.min()
+    ).values
     fig = px.line(
-        bt_df, x="Timeline", y=["Return", f"{selected_index}"], title="Growth Plot:"
+        (1 + bt).cumprod(), x=bt.index, y=list(bt.columns), title="Growth Plot:"
     )
     st.write(fig)
+    show_df(bt)
 
 
 def show_bar_chart(w: pd.Series) -> None:
@@ -80,6 +91,7 @@ def show_bar_chart(w: pd.Series) -> None:
     )
     fig = px.bar(top_w, x="Weights", y="Companies", title="Top Weights:")
     st.write(fig)
+
     # st.write(top_w)
 
 

@@ -57,38 +57,47 @@ with st.sidebar:
 selected_er = st.session_state.select_er
 selected_cov = st.session_state.select_cov
 selected_index = st.session_state.select_index
+selected_portfolio_options = u.add_none_to_list(list(d.PORTFOLIOS_NAMES.keys())) + [
+    "Outperform!"
+]
 
-st.write(
-    f"You chose to outperform :green[{selected_index}] with :orange[{selected_cov}] covariance and :orange[{selected_er}] expected return!"
-)
+if selected_index != "None":
+    st.write(
+        f"You chose to outperform :green[{selected_index}] with :orange[{selected_cov}] covariance and :orange[{selected_er}] expected return!"
+    )
 
-# show.show_index_data(select_index)
-selected_portfolio = st.selectbox(
-    label="Select Portfolio",
-    options=u.add_none_to_list(list(d.PORTFOLIOS_NAMES.keys())),
-)
+    # show.show_index_data(select_index)
+    selected_portfolio = st.selectbox(
+        label="Select Portfolio",
+        options=selected_portfolio_options,
+    )
+    all_portfolios_weights = get.get_all_portfolios(
+        selected_index, selected_cov, selected_er
+    )
+    all_portfolios_backtest = get.get_all_portfolios(
+        selected_index, selected_cov, selected_er, backtest=True
+    )
+    if selected_portfolio == "Outperform!":
+        show.show_comparative_growth_plot(all_portfolios_backtest, selected_index)
+        st.write("Frontier - Sharpe Ratio")
+        st.write("VaR - CVaR - MDD")
+        st.write("Stats Table")
+        st.write("Summary")
 
-
-if selected_index != "None" and selected_portfolio != "None":
-    try:
-        all_portfolios_weights = get.get_all_portfolios(
-            selected_index, selected_cov, selected_er
-        )
-        all_portfolios_backtest = get.get_all_portfolios(
-            selected_index, selected_cov, selected_er, backtest=True
-        )
-        chosen_portfolio_weights = get.get_certain_portfolio(
-            all_portfolios_weights, selected_portfolio
-        )
-        chosen_portfolio_backtest = get.get_certain_portfolio(
-            all_portfolios_backtest, selected_portfolio
-        )
-        portfolio_stats = c.summary_stats(chosen_portfolio_backtest)
-        show.show_stats(portfolio_stats)
-        show.show_portfolios_plots(
-            chosen_portfolio_weights, chosen_portfolio_backtest, selected_index
-        )
-    except Exception as e:
-        st.write(
-            f"Error fetching data for portfolio :red[{selected_portfolio}]. Error: {e}"
-        )
+    elif selected_portfolio != "None":
+        try:
+            chosen_portfolio_weights = get.get_certain_portfolio(
+                all_portfolios_weights, selected_portfolio
+            )
+            chosen_portfolio_backtest = get.get_certain_portfolio(
+                all_portfolios_backtest, selected_portfolio
+            )
+            portfolio_stats = c.summary_stats(chosen_portfolio_backtest)
+            show.show_stats(portfolio_stats)
+            show.show_portfolios_plots(
+                chosen_portfolio_weights, chosen_portfolio_backtest, selected_index
+            )
+        except Exception as e:
+            st.write(
+                f"Error fetching data for portfolio :red[{selected_portfolio}]. Error: {e}"
+            )
