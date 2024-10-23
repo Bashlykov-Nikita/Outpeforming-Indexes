@@ -35,3 +35,16 @@ fig.show()
 
 fig1 = px.line(index_returns_df, x="Date", y="SP500", title="Growth Plot:")
 fig1.show()
+
+
+# Create a DataFrame
+data = {"A": [1, 5, 3], "B": [4, 2, 6]}
+df = pd.DataFrame(data)
+
+
+# Create a function to highlight maximum and minimum values
+(
+    df.style.highlight_max(
+        axis=0, props="background-color:green;", subset=["A", "B"]
+    ).highlight_min(axis=0, props="background-color:red;", subset=["A", "B"])
+)

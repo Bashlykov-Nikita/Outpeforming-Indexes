@@ -141,13 +141,30 @@ def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
     st.write(fig)
 
 
+def highlight(df: pd.DataFrame) -> pd.DataFrame:
+    return (
+        df.style.highlight_max(
+            axis=0, props="background-color:#09ab3b;", subset=["Return", "Sharpe Ratio"]
+        )
+        .highlight_min(
+            axis=0, props="background-color:#ff2b2b;", subset=["Return", "Sharpe Ratio"]
+        )
+        .highlight_max(
+            axis=0,
+            props="background-color:#ff2b2b;",
+            subset=["Volatility", "VaR (5%)", "CVaR (5%)", "Max Drawdown"],
+        )
+        .highlight_min(
+            axis=0,
+            props="background-color:#09ab3b;",
+            subset=["Volatility", "VaR (5%)", "CVaR (5%)", "Max Drawdown"],
+        )
+    )
+
+
 def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> None:
     all_stats_df = pd.DataFrame()
     for col in all_portfolios_bt:
         stats = c.summary_stats(all_portfolios_bt[col])
         all_stats_df = all_stats_df._append(stats)
-
-    def highlight_max(x, color):
-        return np.where(x == np.nanmax(x.to_numpy()), f"color: {color};", None)
-
-    st.table(all_stats_df.style.apply(highlight_max, color="red"))
+    st.table(highlight(all_stats_df))
