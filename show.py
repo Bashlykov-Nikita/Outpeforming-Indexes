@@ -143,7 +143,11 @@ def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
 
 def highlight(df: pd.DataFrame) -> pd.DataFrame:
     return (
-        df.style.highlight_max(
+        # df.style.background_gradient(
+        #     cmap=cm, axis=1, props="background-color:#a3a8b4;", suset=df.index[-1]
+        # )
+        df.style.applymap(lambda _: "background-color: #262730", subset=(df.index[-1],))
+        .highlight_max(
             axis=0, props="background-color:#09ab3b;", subset=["Return", "Sharpe Ratio"]
         )
         .highlight_min(
@@ -162,9 +166,10 @@ def highlight(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> None:
+def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFrame:
     all_stats_df = pd.DataFrame()
     for col in all_portfolios_bt:
         stats = c.summary_stats(all_portfolios_bt[col])
         all_stats_df = all_stats_df._append(stats)
     st.table(highlight(all_stats_df))
+    return all_stats_df
