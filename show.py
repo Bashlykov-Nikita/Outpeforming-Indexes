@@ -69,18 +69,6 @@ def show_growth_plot(bt: pd.Series, selected_index) -> None:
     st.write(fig)
 
 
-#! One show growth
-def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
-    bt[f"{selected_index}"] = get.get_index_returns_for_comp(
-        selected_index, bt.index.min()
-    ).values
-    fig = px.line(
-        (1 + bt).cumprod(), x=bt.index, y=list(bt.columns), title="Growth Plot:"
-    )
-    st.write(fig)
-    show_df(bt)
-
-
 def show_bar_chart(w: pd.Series) -> None:
     w = w.sort_values(ascending=True)
     top_w = (
@@ -139,3 +127,27 @@ def show_index_data(index_name: str):
         index_short_name = d.INDEXES[index_name]
         show_stats(index_short_name)
         show_growth_plot(index_short_name)
+
+
+#! One show growth
+# ? Outperfom Plots
+def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
+    bt[f"{selected_index}"] = get.get_index_returns_for_comp(
+        selected_index, bt.index.min(), bt.index.max()
+    ).values
+    fig = px.line(
+        (1 + bt).cumprod(), x=bt.index, y=list(bt.columns), title="Growth Plot:"
+    )
+    st.write(fig)
+
+
+def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> None:
+    all_stats_df = pd.DataFrame()
+    for col in all_portfolios_bt:
+        stats = c.summary_stats(all_portfolios_bt[col])
+        all_stats_df = all_stats_df._append(stats)
+
+    def highlight_max(x, color):
+        return np.where(x == np.nanmax(x.to_numpy()), f"color: {color};", None)
+
+    st.table(all_stats_df.style.apply(highlight_max, color="red"))

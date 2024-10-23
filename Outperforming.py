@@ -82,6 +82,7 @@ if selected_index != "None":
         st.write("Frontier - Sharpe Ratio")
         st.write("VaR - CVaR - MDD")
         st.write("Stats Table")
+        show.show_comparative_summary_stats(all_portfolios_backtest)
         st.write("Summary")
 
     elif selected_portfolio != "None":

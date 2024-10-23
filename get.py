@@ -53,10 +53,12 @@ def get_index_data(index_name: str, just_returns=False) -> pd.DataFrame:
         return None
 
 
-def get_index_returns_for_comp(selected_index: str, start_date) -> pd.DataFrame:
-    return u.resample_data(get_index_data(d.INDEXES[selected_index])[start_date:])[
-        "Return"
-    ]
+def get_index_returns_for_comp(
+    selected_index: str, start_date, finish_date
+) -> pd.DataFrame:
+    return u.resample_data(
+        get_index_data(d.INDEXES[selected_index])[start_date:finish_date]
+    )["Return"]
 
 
 def get_all_portfolios(
