@@ -28,11 +28,8 @@ def add_none_to_list(l: list) -> list:
     return ["None"] + l
 
 
-def highlight(df: pd.DataFrame) -> pd.DataFrame:
+def table_highlight(df: pd.DataFrame) -> pd.DataFrame:
     return (
-        # df.style.background_gradient(
-        #     cmap=cm, axis=1, props="background-color:#a3a8b4;", suset=df.index[-1]
-        # )
         df.style.applymap(lambda _: "background-color: #262730", subset=(df.index[-1],))
         .highlight_max(
             axis=0, props="background-color:#09ab3b;", subset=["Return", "Sharpe Ratio"]

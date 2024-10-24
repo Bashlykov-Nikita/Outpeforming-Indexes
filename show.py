@@ -147,11 +147,14 @@ def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFr
     # for col in all_portfolios_bt:
     #     stats = c.summary_stats(all_portfolios_bt[col])
     #     all_stats_df = all_stats_df._append(stats)
-    st.table(u.highlight(get.get_all_stats(all_portfolios_bt)))
+    st.table(u.table_highlight(get.get_all_stats(all_portfolios_bt)))
 
 
 def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
     var, cvar, mdd = st.columns(3, gap="Small")
     with var:
-        fig = px.bar(stats, x="VaR (5%)", title="VaR:")
+        fig = px.bar(stats, x="VaR (5%)", title="VaR (5%):")
+        for axis in fig.layout:
+            if axis.startswith("yaxis"):
+                fig.layout[axis].title = ""
         st.write(fig)
