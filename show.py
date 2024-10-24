@@ -132,6 +132,7 @@ def show_index_data(index_name: str):
 #! One show growth
 # ? Outperfom Plots
 def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
+
     bt[f"{selected_index}"] = get.get_index_returns_for_comp(
         selected_index, bt.index.min(), bt.index.max()
     ).values
@@ -141,35 +142,16 @@ def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
     st.write(fig)
 
 
-def highlight(df: pd.DataFrame) -> pd.DataFrame:
-    return (
-        # df.style.background_gradient(
-        #     cmap=cm, axis=1, props="background-color:#a3a8b4;", suset=df.index[-1]
-        # )
-        df.style.applymap(lambda _: "background-color: #262730", subset=(df.index[-1],))
-        .highlight_max(
-            axis=0, props="background-color:#09ab3b;", subset=["Return", "Sharpe Ratio"]
-        )
-        .highlight_min(
-            axis=0, props="background-color:#ff2b2b;", subset=["Return", "Sharpe Ratio"]
-        )
-        .highlight_max(
-            axis=0,
-            props="background-color:#ff2b2b;",
-            subset=["Volatility", "VaR (5%)", "CVaR (5%)", "Max Drawdown"],
-        )
-        .highlight_min(
-            axis=0,
-            props="background-color:#09ab3b;",
-            subset=["Volatility", "VaR (5%)", "CVaR (5%)", "Max Drawdown"],
-        )
-    )
-
-
 def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFrame:
-    all_stats_df = pd.DataFrame()
-    for col in all_portfolios_bt:
-        stats = c.summary_stats(all_portfolios_bt[col])
-        all_stats_df = all_stats_df._append(stats)
-    st.table(highlight(all_stats_df))
-    return all_stats_df
+    # all_stats_df = pd.DataFrame()
+    # for col in all_portfolios_bt:
+    #     stats = c.summary_stats(all_portfolios_bt[col])
+    #     all_stats_df = all_stats_df._append(stats)
+    st.table(u.highlight(get.get_all_stats(all_portfolios_bt)))
+
+
+def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
+    var, cvar, mdd = st.columns(3, gap="Small")
+    with var:
+        fig = px.bar(stats, x="VaR (5%)", title="VaR:")
+        st.write(fig)

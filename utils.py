@@ -28,15 +28,26 @@ def add_none_to_list(l: list) -> list:
     return ["None"] + l
 
 
-# def select_portfolio_name(portfolio_name: str, cov: str, er: str) -> pd.DataFrame:
-#     portfolio_name_short = d.PORTFOLIOS_NAMES[portfolio_name]
-#     cov_short = d.COV[cov]
-#     er_short = d.ER[er]
-#     portfolio = f"{portfolio_name_short}_{cov_short}_{er_short}"
-#     return portfolio
-
-
-# def get_certain_portfolio(index_name: str, portfolio_name: str):
-#     portfolio_weights = d.get_df(d.PORTFOLIOS_WEIGHTS[index_name])[portfolio_name]
-#     portfolio_backtest = d.get_df(d.BACKTEST[index_name])[portfolio_name]
-#     return [portfolio_weights, portfolio_backtest]
+def highlight(df: pd.DataFrame) -> pd.DataFrame:
+    return (
+        # df.style.background_gradient(
+        #     cmap=cm, axis=1, props="background-color:#a3a8b4;", suset=df.index[-1]
+        # )
+        df.style.applymap(lambda _: "background-color: #262730", subset=(df.index[-1],))
+        .highlight_max(
+            axis=0, props="background-color:#09ab3b;", subset=["Return", "Sharpe Ratio"]
+        )
+        .highlight_min(
+            axis=0, props="background-color:#ff2b2b;", subset=["Return", "Sharpe Ratio"]
+        )
+        .highlight_max(
+            axis=0,
+            props="background-color:#ff2b2b;",
+            subset=["Volatility", "VaR (5%)", "CVaR (5%)", "Max Drawdown"],
+        )
+        .highlight_min(
+            axis=0,
+            props="background-color:#09ab3b;",
+            subset=["Volatility", "VaR (5%)", "CVaR (5%)", "Max Drawdown"],
+        )
+    )

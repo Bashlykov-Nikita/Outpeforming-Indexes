@@ -110,3 +110,11 @@ def get_certain_portfolio(
         if col.startswith(prefix):
             return all_portfolios[col]
     return None
+
+
+def get_all_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFrame:
+    all_stats_df = pd.DataFrame()
+    for col in all_portfolios_bt:
+        stats = c.summary_stats(all_portfolios_bt[col])
+        all_stats_df = all_stats_df._append(stats)
+    return all_stats_df
