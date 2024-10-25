@@ -153,7 +153,17 @@ def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFr
 def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
     var, cvar, mdd = st.columns(3, gap="Small")
     with var:
-        fig = px.bar(stats, x="VaR (5%)", title="VaR (5%):")
+        colors = px.colors.sequential.Viridis[: len(stats)]
+        fig = px.bar(
+            stats,
+            x="VaR (5%)",
+            title="VaR (5%):",
+            # set color equal to a variable
+            color=stats["VaR (5%)"],
+            color_continuous_scale=colors,
+            # barmode="overlay",
+        )
+        fig.update_layout(yaxis={"categoryorder": "total ascending"})
         for axis in fig.layout:
             if axis.startswith("yaxis"):
                 fig.layout[axis].title = ""
