@@ -32,19 +32,23 @@ def table_highlight(df: pd.DataFrame) -> pd.DataFrame:
     return (
         df.style.applymap(lambda _: "background-color: #262730", subset=(df.index[-1],))
         .highlight_max(
-            axis=0, props="background-color:#09ab3b;", subset=["Return", "Sharpe Ratio"]
+            axis=0,
+            props="background-color:#09ab3b;",
+            subset=["Return", "Sharpe Ratio", "Max Drawdown"],
         )
         .highlight_min(
-            axis=0, props="background-color:#ff2b2b;", subset=["Return", "Sharpe Ratio"]
+            axis=0,
+            props="background-color:#ff2b2b;",
+            subset=["Return", "Sharpe Ratio", "Max Drawdown"],
         )
         .highlight_max(
             axis=0,
             props="background-color:#ff2b2b;",
-            subset=["Volatility", "VaR (5%)", "CVaR (5%)", "Max Drawdown"],
+            subset=["Volatility", "VaR (5%)", "CVaR (5%)"],
         )
         .highlight_min(
             axis=0,
             props="background-color:#09ab3b;",
-            subset=["Volatility", "VaR (5%)", "CVaR (5%)", "Max Drawdown"],
+            subset=["Volatility", "VaR (5%)", "CVaR (5%)"],
         )
     )

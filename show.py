@@ -150,6 +150,7 @@ def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFr
     st.table(u.table_highlight(get.get_all_stats(all_portfolios_bt)))
 
 
+#! Unify in one functon:
 def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
     var, cvar, mdd = st.columns(3, gap="Small")
     with var:
@@ -158,10 +159,36 @@ def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
             stats,
             x="VaR (5%)",
             title="VaR (5%):",
-            # set color equal to a variable
             color=stats["VaR (5%)"],
             color_continuous_scale=colors,
-            # barmode="overlay",
+        )
+        fig.update_layout(yaxis={"categoryorder": "total ascending"})
+        for axis in fig.layout:
+            if axis.startswith("yaxis"):
+                fig.layout[axis].title = ""
+        st.write(fig)
+    with cvar:
+        colors = px.colors.sequential.Sunset[: len(stats)]
+        fig = px.bar(
+            stats,
+            x="CVaR (5%)",
+            title="CVaR (5%):",
+            color=stats["CVaR (5%)"],
+            color_continuous_scale=colors,
+        )
+        fig.update_layout(yaxis={"categoryorder": "total ascending"})
+        for axis in fig.layout:
+            if axis.startswith("yaxis"):
+                fig.layout[axis].title = ""
+        st.write(fig)
+    with mdd:
+        colors = px.colors.sequential.Bluered[: len(stats)]
+        fig = px.bar(
+            abs(stats),
+            x="Max Drawdown",
+            title="Max Drawdown:",
+            color=stats["Max Drawdown"],
+            color_continuous_scale=colors,
         )
         fig.update_layout(yaxis={"categoryorder": "total ascending"})
         for axis in fig.layout:
