@@ -150,6 +150,34 @@ def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFr
     st.table(u.table_highlight(get.get_all_stats(all_portfolios_bt)))
 
 
+def show_frontier_sharpe(stats):
+    frontier, sharpe = st.columns(2, gap="Small")
+    with frontier:
+        frontier = pd.DataFrame(
+            {
+                "Portfolio": stats.index,
+                "Return": stats["Return"],
+                "Volatility": stats["Volatility"],
+            }
+        )
+        fig = px.scatter(
+            frontier,
+            x="Volatility",
+            y="Return",
+            color="Portfolio",
+            hover_name="Portfolio",
+            hover_data=["Return", "Volatility"],
+        )
+
+        fig.update_layout(title="Portfolio Risk-Return Profile:")
+        # fig.update_layout(xaxis_type="log")
+        # Assuming you have the risk-free rate and market portfolio data
+
+        st.write(fig)
+    with sharpe:
+        st.write("Sharpe")
+
+
 #! Unify in one functon:
 def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
     var, cvar, mdd = st.columns(3, gap="Small")
@@ -187,7 +215,7 @@ def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
             abs(stats),
             x="Max Drawdown",
             title="Max Drawdown:",
-            color=stats["Max Drawdown"],
+            color="Max Drawdown",
             color_continuous_scale=colors,
         )
         fig.update_layout(yaxis={"categoryorder": "total ascending"})

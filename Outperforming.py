@@ -80,6 +80,7 @@ if selected_index != "None":
     if selected_portfolio == "Outperform!":
         show.show_comparative_growth_plot(all_portfolios_backtest, selected_index)
         st.write("Frontier - Sharpe Ratio")
+        show.show_frontier_sharpe(get.get_all_stats(all_portfolios_backtest))
         st.write("VaR - CVaR - MDD")
         show.show_var_cvar_mdd_comp(get.get_all_stats(all_portfolios_backtest))
         st.write("Stats Table")
