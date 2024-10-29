@@ -96,7 +96,7 @@ def show_dist_plot(bt: pd.Series) -> None:
         x="Returns",
         histnorm="probability",
         title="Probability distribution:",
-        # marginal="rug",
+        marginal="box",
     )
     st.write(fig)
 
@@ -175,7 +175,21 @@ def show_frontier_sharpe(stats):
 
         st.write(fig)
     with sharpe:
-        st.write("Sharpe")
+        sharpe = pd.DataFrame(
+            {"Portfolio": stats.index, "Sharpe Ratio": stats["Sharpe Ratio"]}
+        )
+        fig = px.bar(
+            sharpe,
+            x="Portfolio",
+            y="Sharpe Ratio",
+            color="Portfolio",
+            hover_name="Portfolio",
+        )
+        fig.update_layout(title="Sharpe Ratio:")
+        for axis in fig.layout:
+            if axis.startswith("xaxis"):
+                fig.layout[axis].title = ""
+        st.write(fig)
 
 
 #! Unify in one functon:
