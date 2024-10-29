@@ -29,6 +29,15 @@ def add_none_to_list(l: list) -> list:
 
 
 def table_highlight(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Highlight specific cells in a DataFrame for visual emphasis.
+
+    Parameters:
+    - df (pd.DataFrame): The input DataFrame to highlight.
+
+    Returns:
+    - pd.DataFrame: The DataFrame with highlighted cells.
+    """
     return (
         df.style.applymap(lambda _: "background-color: #262730", subset=(df.index[-1],))
         .highlight_max(

@@ -24,6 +24,7 @@ def show_df(df: pd.DataFrame) -> None:
     st.write(df)
 
 
+# ? Show functions for data showcase page:
 def show_index_hist_data(short_name: str) -> None:
     """Shows index historical data
 
@@ -50,7 +51,14 @@ def show_portfolios_weights_and_backtest(
         show_df(get.get_all_portfolios(index_name, cov, er))
 
 
+# ? Show functions for Outperform (selected portfolio) page:
 def show_stats(portfolio_stats: pd.DataFrame) -> None:
+    """
+    Display statistics (in st.metric format) for the given portfolio.
+
+    Args:
+        portfolio_stats (pd.DataFrame): DataFrame containing portfolio statistics.
+    """
     columns_list = st.columns(len(portfolio_stats.columns), gap="small")
     for col, i in zip(columns_list, portfolio_stats.columns):
         with col:
@@ -62,14 +70,24 @@ def show_stats(portfolio_stats: pd.DataFrame) -> None:
 
 
 # TODO: Del index arg
-def show_growth_plot(bt: pd.Series, selected_index) -> None:
+def show_growth_plot(bt: pd.Series) -> None:
+    """Generate a growth plot based on the input time series data.
+
+    Args:
+        bt (pd.Series): A pandas Series containing the historical returns for plotting.
+    """
     bt_df = pd.DataFrame({"Timeline": bt.index, "Return": (1 + bt.values).cumprod()})
-    # bt_df[f"{selected_index}"] = get.get_index_returns_for_comp(selected_index).values
     fig = px.line(bt_df, x="Timeline", y="Return", title="Growth Plot:")
     st.write(fig)
 
 
 def show_bar_chart(w: pd.Series) -> None:
+    """Sorts the input pandas Series in ascending order, filters out zero values,
+    removes duplicates, and displays a bar chart of the top weights for companies.
+
+    Args:
+        w (pd.Series): The pandas Series containing weights for companies.
+    """
     w = w.sort_values(ascending=True)
     top_w = (
         pd.DataFrame({"Companies": w.index, "Weights": w.values})
@@ -80,17 +98,14 @@ def show_bar_chart(w: pd.Series) -> None:
     fig = px.bar(top_w, x="Weights", y="Companies", title="Top Weights:")
     st.write(fig)
 
-    # st.write(top_w)
-
 
 def show_dist_plot(bt: pd.Series) -> None:
+    """Generate a probability distribution plot for a given time series.
+
+    Args:
+        bt (pd.Series): Time series data to plot the distribution for.
+    """
     bt_df = pd.DataFrame({"Date": bt.index, "Returns": bt.values})
-    # fig = px.histogram(bt_df["Returns"], histnorm="probability", marginal="box")
-    # fig = ff.create_distplot(
-    #     [bt_df["Returns"]],
-    #     ["Returns"],
-    #     show_hist=False,
-    # )
     fig = px.histogram(
         bt_df["Returns"],
         x="Returns",
@@ -101,12 +116,16 @@ def show_dist_plot(bt: pd.Series) -> None:
     st.write(fig)
 
 
-def show_portfolios_plots(
-    weights: pd.Series, backtest: pd.Series, index_name: str
-) -> None:
+def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
+    """Displays growth, top weights, and risk contribution plots for portfolios.
+
+    Args:
+        weights (pd.Series): Pandas Series of weights for companies.
+        backtest (pd.Series): Pandas Series of historical returns for plotting.
+    """
     growth, top_weights, risc_contribution = st.columns(3, gap="Small")
     with growth:
-        show_growth_plot(backtest, index_name)
+        show_growth_plot(backtest)
     with top_weights:
         # show_df(weights)
         show_bar_chart(weights)
@@ -118,19 +137,10 @@ def show_portfolios_plots(
 # ! Not used
 # ! Remake for new UI:
 
-
-def show_index_data(index_name: str):
-    if index_name == "None":
-        # TODO: Starting Page
-        st.write("Choose Index")
-    else:
-        index_short_name = d.INDEXES[index_name]
-        show_stats(index_short_name)
-        show_growth_plot(index_short_name)
-
-
 #! One show growth
-# ? Outperfom Plots
+
+
+# ? Show functions for Outperform! page:
 def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
 
     bt[f"{selected_index}"] = get.get_index_returns_for_comp(
@@ -140,14 +150,6 @@ def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
         (1 + bt).cumprod(), x=bt.index, y=list(bt.columns), title="Growth Plot:"
     )
     st.write(fig)
-
-
-def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFrame:
-    # all_stats_df = pd.DataFrame()
-    # for col in all_portfolios_bt:
-    #     stats = c.summary_stats(all_portfolios_bt[col])
-    #     all_stats_df = all_stats_df._append(stats)
-    st.table(u.table_highlight(get.get_all_stats(all_portfolios_bt)))
 
 
 def show_frontier_sharpe(stats):
@@ -170,8 +172,6 @@ def show_frontier_sharpe(stats):
         )
 
         fig.update_layout(title="Portfolio Risk-Return Profile:")
-        # fig.update_layout(xaxis_type="log")
-        # Assuming you have the risk-free rate and market portfolio data
 
         st.write(fig)
     with sharpe:
@@ -237,3 +237,7 @@ def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
             if axis.startswith("yaxis"):
                 fig.layout[axis].title = ""
         st.write(fig)
+
+
+def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> None:
+    st.table(u.table_highlight(get.get_all_stats(all_portfolios_bt)))

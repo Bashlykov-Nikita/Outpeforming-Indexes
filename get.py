@@ -56,6 +56,17 @@ def get_index_data(index_name: str, just_returns=False) -> pd.DataFrame:
 def get_index_returns_for_comp(
     selected_index: str, start_date, finish_date
 ) -> pd.DataFrame:
+    """
+    Fetches and resamples historical index returns for a specified index within a given date range.
+
+    Parameters:
+    - selected_index (str): Name of the index to fetch returns for.
+    - start_date: Start date of the date range.
+    - finish_date: Finish date of the date range.
+
+    Returns:
+    - pandas.DataFrame: Resampled historical returns for the specified index within the provided date range.
+    """
     return u.resample_data(
         get_index_data(d.INDEXES[selected_index])[start_date:finish_date]
     )["Return"]
@@ -113,6 +124,15 @@ def get_certain_portfolio(
 
 
 def get_all_stats(all_portfolios_bt: pd.DataFrame) -> pd.DataFrame:
+    """
+    Combines summary statistics for each portfolio in one DataFrame.
+
+    Parameters:
+    - all_portfolios_bt (pd.DataFrame): DataFrame containing portfolios' returns.
+
+    Returns:
+    - pd.DataFrame: DataFrame with aggregated summary statistics for each portfolio.
+    """
     all_stats_df = pd.DataFrame()
     for col in all_portfolios_bt:
         stats = c.summary_stats(all_portfolios_bt[col])
