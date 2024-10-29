@@ -142,7 +142,13 @@ def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
 
 # ? Show functions for Outperform! page:
 def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
+    """
+    Plots the comparative growth of a specified index against a Porfolios.
 
+    Args:
+        bt (pd.DataFrame): DataFrame with portfolios backtest.
+        selected_index (str): Name of the index for comparison.
+    """
     bt[f"{selected_index}"] = get.get_index_returns_for_comp(
         selected_index, bt.index.min(), bt.index.max()
     ).values
@@ -153,6 +159,12 @@ def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
 
 
 def show_frontier_sharpe(stats):
+    """
+    Display the Portfolio Risk-Return Profile and Sharpe Ratio for each portfolio.
+
+    Args:
+        stats (DataFrame): A DataFrame containing portfolio statistics including Return, Volatility, and Sharpe Ratio.
+    """
     frontier, sharpe = st.columns(2, gap="Small")
     with frontier:
         frontier = pd.DataFrame(
@@ -194,6 +206,11 @@ def show_frontier_sharpe(stats):
 
 #! Unify in one functon:
 def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
+    """Display bar charts for VaR, CVaR, and Max Drawdown.
+
+    Args:
+        stats (pd.DataFrame): DataFrame containing statistics data.
+    """
     var, cvar, mdd = st.columns(3, gap="Small")
     with var:
         colors = px.colors.sequential.Viridis[: len(stats)]
@@ -240,4 +257,10 @@ def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
 
 
 def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> None:
+    """
+    Display a comparative summary of statistics for all portfolios.
+
+    Args:
+        all_portfolios_bt (pd.DataFrame): DataFrame containing portfolios' backtest.
+    """
     st.table(u.table_highlight(get.get_all_stats(all_portfolios_bt)))

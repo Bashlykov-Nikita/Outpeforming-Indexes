@@ -76,13 +76,12 @@ if selected_index != "None":
     all_portfolios_backtest = get.get_all_portfolios(
         selected_index, selected_cov, selected_er, backtest=True
     )
-    all_portfolios_stats = get.get_all_stats(all_portfolios_backtest)
     if selected_portfolio == "Outperform!":
         # *Shows comparative growth plots, risk-return profiles,
         # * and summary statistics if "Outperform!" is selected.
         show.show_comparative_growth_plot(all_portfolios_backtest, selected_index)
-        show.show_frontier_sharpe(all_portfolios_stats)
-        show.show_var_cvar_mdd_comp(all_portfolios_stats)
+        show.show_frontier_sharpe(get.get_all_stats(all_portfolios_backtest))
+        show.show_var_cvar_mdd_comp(get.get_all_stats(all_portfolios_backtest))
         show.show_comparative_summary_stats(all_portfolios_backtest)
         st.write("Summary")
 
