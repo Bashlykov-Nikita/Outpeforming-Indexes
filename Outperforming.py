@@ -65,17 +65,17 @@ if selected_index != "None":
     st.write(
         f"You chose to outperform :green[{selected_index}] with :orange[{selected_cov}] covariance and :orange[{selected_er}] expected return!"
     )
-
-    selected_portfolio = st.selectbox(
-        label="Select Portfolio",
-        options=selected_portfolio_options,
-    )
-    all_portfolios_weights = get.get_all_portfolios(
-        selected_index, selected_cov, selected_er
-    )
-    all_portfolios_backtest = get.get_all_portfolios(
-        selected_index, selected_cov, selected_er, backtest=True
-    )
+    with st.spinner("Wait for it..."):
+        selected_portfolio = st.selectbox(
+            label="Select Portfolio",
+            options=selected_portfolio_options,
+        )
+        all_portfolios_weights = get.get_all_portfolios(
+            selected_index, selected_cov, selected_er
+        )
+        all_portfolios_backtest = get.get_all_portfolios(
+            selected_index, selected_cov, selected_er, backtest=True
+        )
     if selected_portfolio == "Outperform!":
         # *Shows comparative growth plots, risk-return profiles,
         # * and summary statistics if "Outperform!" is selected.
@@ -88,13 +88,14 @@ if selected_index != "None":
     elif selected_portfolio != "None":
         # * Displays specific portfolio statistics and plots if another portfolio is selected.
         try:
-            chosen_portfolio_weights = get.get_certain_portfolio(
-                all_portfolios_weights, selected_portfolio
-            )
-            chosen_portfolio_backtest = get.get_certain_portfolio(
-                all_portfolios_backtest, selected_portfolio
-            )
-            portfolio_stats = c.summary_stats(chosen_portfolio_backtest)
+            with st.spinner("Wait for it..."):
+                chosen_portfolio_weights = get.get_certain_portfolio(
+                    all_portfolios_weights, selected_portfolio
+                )
+                chosen_portfolio_backtest = get.get_certain_portfolio(
+                    all_portfolios_backtest, selected_portfolio
+                )
+                portfolio_stats = c.summary_stats(chosen_portfolio_backtest)
             show.show_stats(portfolio_stats)
             show.show_portfolios_plots(
                 chosen_portfolio_weights, chosen_portfolio_backtest

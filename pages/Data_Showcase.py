@@ -28,21 +28,26 @@ selected_er = st.session_state["select_er"]
 if selected_index != "None":
     # ? Show Index historical data:
     st.write(f"#### {selected_index} historical data:")
-    show.show_index_hist_data(d.INDEXES[selected_index])
+    with st.spinner("Wait for it..."):
+        show.show_index_hist_data(d.INDEXES[selected_index])
 
     # ? Show portfolios weights:
     st.write("#### Recommended portfolios weights:")
     st.write(
         f"With **{selected_cov}** covariance and **{selected_er}** expected return"
     )
-    show.show_portfolios_weights_and_backtest(selected_index, selected_cov, selected_er)
+    with st.spinner("Wait for it..."):
+        show.show_portfolios_weights_and_backtest(
+            selected_index, selected_cov, selected_er
+        )
 
     # ? Show Backtest:
     st.write("#### Backtest data:")
     st.caption("_Backtest of Cap Weighted portfolio has not done yet._")
-    show.show_portfolios_weights_and_backtest(
-        selected_index, selected_cov, selected_er, backtest=True
-    )
+    with st.spinner("Wait for it..."):
+        show.show_portfolios_weights_and_backtest(
+            selected_index, selected_cov, selected_er, backtest=True
+        )
 
     # ? Link to Github:
     st.write(

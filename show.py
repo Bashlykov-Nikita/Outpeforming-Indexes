@@ -25,6 +25,8 @@ def show_df(df: pd.DataFrame) -> None:
 
 
 # ? Show functions for data showcase page:
+
+
 @st.cache_data
 def show_index_hist_data(short_name: str) -> None:
     """Shows index historical data
