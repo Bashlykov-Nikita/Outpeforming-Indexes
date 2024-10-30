@@ -25,6 +25,7 @@ def show_df(df: pd.DataFrame) -> None:
 
 
 # ? Show functions for data showcase page:
+@st.cache_data
 def show_index_hist_data(short_name: str) -> None:
     """Shows index historical data
 
@@ -34,6 +35,7 @@ def show_index_hist_data(short_name: str) -> None:
     show_df(get.get_index_data(short_name))
 
 
+@st.cache_data
 def show_portfolios_weights_and_backtest(
     index_name: str, cov: str, er: str, backtest=False
 ) -> None:
@@ -52,6 +54,7 @@ def show_portfolios_weights_and_backtest(
 
 
 # ? Show functions for Outperform (selected portfolio) page:
+@st.cache_data
 def show_stats(portfolio_stats: pd.DataFrame) -> None:
     """
     Display statistics (in st.metric format) for the given portfolio.
@@ -69,7 +72,6 @@ def show_stats(portfolio_stats: pd.DataFrame) -> None:
             )
 
 
-# TODO: Del index arg
 def show_growth_plot(bt: pd.Series) -> None:
     """Generate a growth plot based on the input time series data.
 
@@ -116,6 +118,7 @@ def show_dist_plot(bt: pd.Series) -> None:
     st.write(fig)
 
 
+@st.cache_data
 def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
     """Displays growth, top weights, and risk contribution plots for portfolios.
 
