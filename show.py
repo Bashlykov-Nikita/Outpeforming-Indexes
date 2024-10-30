@@ -136,14 +136,8 @@ def show_portfolios_plots(weights: pd.Series, backtest: pd.Series) -> None:
         show_dist_plot(backtest)
 
 
-# @st.cache_data
-# ! Not used
-# ! Remake for new UI:
-
-#! One show growth
-
-
 # ? Show functions for Outperform! page:
+@st.cache_data
 def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
     """
     Plots the comparative growth of a specified index against a Porfolios.
@@ -161,6 +155,7 @@ def show_comparative_growth_plot(bt: pd.DataFrame, selected_index) -> None:
     st.write(fig)
 
 
+@st.cache_data
 def show_frontier_sharpe(stats):
     """
     Display the Portfolio Risk-Return Profile and Sharpe Ratio for each portfolio.
@@ -208,6 +203,7 @@ def show_frontier_sharpe(stats):
 
 
 #! Unify in one functon:
+@st.cache_data
 def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
     """Display bar charts for VaR, CVaR, and Max Drawdown.
 
@@ -259,6 +255,7 @@ def show_var_cvar_mdd_comp(stats: pd.DataFrame) -> None:
         st.write(fig)
 
 
+@st.cache_data
 def show_comparative_summary_stats(all_portfolios_bt: pd.DataFrame) -> None:
     """
     Display a comparative summary of statistics for all portfolios.
