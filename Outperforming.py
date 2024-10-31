@@ -7,6 +7,7 @@ import calc as c
 import utils as u
 import get
 import show
+import texts as t
 
 #! Streamlit page
 # * Main streamlit page file
@@ -76,6 +77,7 @@ if selected_index != "None":
         all_portfolios_backtest = get.get_all_portfolios(
             selected_index, selected_cov, selected_er, backtest=True
         )
+        t.portfolio_none_text(selected_portfolio)
     if selected_portfolio == "Outperform!":
         # *Shows comparative growth plots, risk-return profiles,
         # * and summary statistics if "Outperform!" is selected.
