@@ -8,7 +8,7 @@ INDEXES = {
     "DowJones": "^DJI",
     "FTSE100": "^FTSE",
     "DAX": "^GDAXI",
-    "CAC40": "^FCHI",
+    # "CAC40": "^FCHI",
     "Nikkei225": "^N225",
     "HSI": "^HSI",
 }
@@ -19,7 +19,7 @@ PORTFOLIOS_NAMES = {
     "Maximum Sharpe Ratio": "MSR",
     "Global Minimum Variance": "GMV",
     "Equally Weighted": "EW",
-    "Cap Weighted": "CW",
+    # "Cap Weighted": "CW",
     "Equal Risk Contribution": "ERC",
 }
 

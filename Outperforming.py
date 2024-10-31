@@ -85,7 +85,7 @@ if selected_index != "None":
         show.show_frontier_sharpe(get.get_all_stats(all_portfolios_backtest))
         show.show_var_cvar_mdd_comp(get.get_all_stats(all_portfolios_backtest))
         show.show_comparative_summary_stats(all_portfolios_backtest)
-        st.write("Summary")
+        # st.write("Summary")
 
     elif selected_portfolio != "None":
         # * Displays specific portfolio statistics and plots if another portfolio is selected.
