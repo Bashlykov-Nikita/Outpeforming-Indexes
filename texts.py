@@ -1,11 +1,11 @@
 import streamlit as st
 
 
-def note_text(note_massage: str):
+def note_text(note_message: str):
     st.markdown(
         f"""
     <div class="note-block">
-        <strong class="note-text">Note:</strong> {note_massage}.
+        <strong class="note-text">📌Note:</strong> {note_message}.
     </div>
     """,
         unsafe_allow_html=True,
@@ -19,10 +19,40 @@ def note_text(note_massage: str):
             border-radius: 0.5rem;
             background-color: #062633;
             border-left: 4px solid rgb(0 192 242 / 1);
-            margin-bottom: 1rem;
+
         }
         .note-text {
             color: rgb(0 192 242 / 1)
+        }
+
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
+
+
+def attention_text(attention_message: str):
+    st.markdown(
+        f"""
+    <div class="attention-block">
+        <strong class="attention-text">🔥Important:</strong> {attention_message}.
+    </div>
+    """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        """
+    <style>
+        .attention-block {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #481d00;
+            border-left: 4px solid rgb(255 164 33 / 1);
+            margin-bottom: 1rem;
+        }
+        .attention-text {
+            color: rgb(255 164 33 / 1)
         }
 
     </style>
@@ -43,6 +73,9 @@ def portfolio_none_text(selected_portfolio):
         )
         note_text(
             "MSR portfolio contains no exposure to unrewarded risk (contains only systematic risc)"
+        )
+        attention_text(
+            "Right now, Magic only works in the main Python app file, not in imported files. See GitHub issue #288 for a discussion of the issues."
         )
         st.write(
             "##### - 🛡️Global Minimum Variance - a portfolio with the smallest possible fluctuations in value."
