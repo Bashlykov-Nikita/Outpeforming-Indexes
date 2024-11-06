@@ -69,13 +69,17 @@ def portfolio_none_text(selected_portfolio):
     if selected_portfolio == "None":
         st.subheader("About Portfolios:")
         st.write(
-            "##### - 📈Maximum Sharpe Ratio - a portfolio that aims for the highest possible returns for a given level of risk."
+            """##### - 📈Maximum Sharpe Ratio - a portfolio that aims for the highest possible returns for a given level of risk."""
+        )
+        st.markdown(
+            """An MSR portfolio is an investment portfolio designed to maximize the Sharpe ratio. The Sharpe ratio is a measure of risk-adjusted return, calculated as the excess return of an investment compared to a risk-free rate, divided by its standard deviation.
+            \nIn essence, an MSR portfolio aims to achieve the highest possible return for a given level of risk. It's a popular strategy used by investors and portfolio managers to optimize their investments."""
         )
         note_text(
-            "MSR portfolio contains no exposure to unrewarded risk (contains only systematic risc)"
+            "MSR portfolio contains no exposure to unrewarded risk (contains only systematic risc). That's what makes such type of portfolio so desirable"
         )
         attention_text(
-            "Right now, Magic only works in the main Python app file, not in imported files. See GitHub issue #288 for a discussion of the issues."
+            "Estimation error is a key challenge in portfolio optimization. Various methods exist for improving estimates for expected return and covariance parameters. However, some uncertainty always remains, which is particularly large for expected return"
         )
         st.write(
             "##### - 🛡️Global Minimum Variance - a portfolio with the smallest possible fluctuations in value."

@@ -71,13 +71,14 @@ if selected_index != "None":
             label="Select Portfolio",
             options=selected_portfolio_options,
         )
+        t.portfolio_none_text(selected_portfolio)
         all_portfolios_weights = get.get_all_portfolios(
             selected_index, selected_cov, selected_er
         )
         all_portfolios_backtest = get.get_all_portfolios(
             selected_index, selected_cov, selected_er, backtest=True
         )
-        t.portfolio_none_text(selected_portfolio)
+
     if selected_portfolio == "Outperform!":
         # *Shows comparative growth plots, risk-return profiles,
         # * and summary statistics if "Outperform!" is selected.
