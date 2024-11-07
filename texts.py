@@ -84,6 +84,16 @@ def portfolio_none_text(selected_portfolio):
         st.write(
             "##### - 🛡️Global Minimum Variance - a portfolio with the smallest possible fluctuations in value."
         )
+        st.markdown(
+            """A Global Minimum Variance (GMV) portfolio is an investment portfolio designed to minimize risk, specifically the portfolio's variance or standard deviation. 
+                    \nIt's constructed by identifying the specific weights for each asset in the portfolio that result in the lowest possible overall risk.  """
+        )
+        note_text(
+            "The GMV is least sensitive to errors in parameter estimates. Since it requires no expected return estimates, it is only sensitive to errors in risk parameter estimates"
+        )
+        attention_text(
+            'GMV implicitly assumes constant expected returns, which is not a highly reasonable prior. The "magic" of diversification may not work as expected, as low-volatility components are not penalized and may be overweighted. As a result, GMV portfolios might not be well-balanced'
+        )
         st.write(
             "##### - ⚖️Equally Weighted - a portfolio where each stock has the same percentage."
         )
