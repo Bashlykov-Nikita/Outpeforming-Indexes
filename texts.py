@@ -86,7 +86,13 @@ def portfolio_none_text(selected_portfolio):
         )
         st.markdown(
             """A Global Minimum Variance (GMV) portfolio is an investment portfolio designed to minimize risk, specifically the portfolio's variance or standard deviation. 
-                    \nIt's constructed by identifying the specific weights for each asset in the portfolio that result in the lowest possible overall risk.  """
+                It's constructed by identifying the specific weights for each asset in the portfolio that result in the lowest possible overall risk."""
+        )
+        st.markdown(
+            """GMV is not consistently better than the [1/N rule](https://academic.oup.com/rfs/article-abstract/22/5/1915/1592901?redirectedFrom=fulltext) in terms of Sharpe Ratio. But GMV can be improved:
+            \n- Solution 1: GMV with a minimum Effective Number of Constituents (ENC) constraint.
+            \n- Solution 2: Select all assets with the same volatility (This portfolio is sometimes known as the "Max Decorrelation Portfolio").
+            \n In both cases, it forces the optimizer to make smart use of the correlation structure, as opposed to merely overweighting low-volatility components."""
         )
         note_text(
             "The GMV is least sensitive to errors in parameter estimates. Since it requires no expected return estimates, it is only sensitive to errors in risk parameter estimates"
@@ -94,8 +100,12 @@ def portfolio_none_text(selected_portfolio):
         attention_text(
             'GMV implicitly assumes constant expected returns, which is not a highly reasonable prior. The "magic" of diversification may not work as expected, as low-volatility components are not penalized and may be overweighted. As a result, GMV portfolios might not be well-balanced'
         )
+
         st.write(
             "##### - ⚖️Equally Weighted - a portfolio where each stock has the same percentage."
+        )
+        st.markdown(
+            """An Equal-Weighted (EW) portfolio is a type of investment portfolio where each asset in the portfolio is assigned an equal weight. This means that the same amount of money is invested in each asset, regardless of its market capitalization."""
         )
         st.write(
             "##### - 🧩Equal Risk Contribution - a portfolio where each stock contributes equally to the overall portfolio risk."
