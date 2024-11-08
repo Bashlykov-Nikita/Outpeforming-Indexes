@@ -110,3 +110,6 @@ def portfolio_none_text(selected_portfolio):
         st.write(
             "##### - 🧩Equal Risk Contribution - a portfolio where each stock contributes equally to the overall portfolio risk."
         )
+        st.markdown(
+            """An ERC portfolio, also known as an Equal Risk Contribution portfolio, is a type of investment portfolio that aims to distribute risk equally among its constituent assets. This means that each asset in the portfolio contributes the same amount of risk to the overall portfolio. """
+        )
