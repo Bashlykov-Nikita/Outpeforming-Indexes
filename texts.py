@@ -119,3 +119,15 @@ def portfolio_none_text(selected_portfolio):
         note_text(
             "While portfolios balanced by dollar contributions may appear well-diversified, they can still be highly concentrated in terms of risk. Understanding the risk contribution of each asset is crucial for effective portfolio management"
         )
+
+
+def index_none_text():
+    st.subheader("Overview")
+    st.write("##### Goal")
+    st.write("##### Scope")
+    st.write("##### Justification")
+    st.write("##### About Options")
+    st.write("##### About Metrics")
+    st.write("##### About Backtesting")
+    st.write("##### How results can be improved?")
+    st.write("##### Sources")

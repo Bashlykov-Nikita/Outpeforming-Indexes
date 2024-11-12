@@ -29,7 +29,7 @@ st.set_page_config(
 )
 
 st.title(":chart: Outperforming the Indexes")
-st.caption("_Data from Yahoo Finance_")
+# st.caption("_Data from Yahoo Finance_")
 
 # ? Defining sidebar options:
 with st.sidebar:
@@ -107,3 +107,5 @@ if selected_index != "None":
             st.error(
                 f"Error fetching data for portfolio :red[{selected_portfolio}]. Error: {e}"
             )
+else:
+    t.index_none_text()
