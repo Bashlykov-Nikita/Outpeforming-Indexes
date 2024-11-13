@@ -123,11 +123,11 @@ def portfolio_none_text(selected_portfolio):
 
 def index_none_text():
     st.subheader("Overview")
-    st.write("##### Goal")
+    st.write("##### The main idea of this project:")
     st.write(
         "Develop a robust investment portfolio optimization framework that generates diverse portfolio strategies based on popular financial indexes."
     )
-    st.write("##### Scope")
+    st.write("##### What this programme does:")
     st.write(
         """- Web-scraping companies names
         \n- Getting companies historical returns
@@ -136,9 +136,9 @@ def index_none_text():
         \n- Risk analysis and performance evaluation
         \n- Visualization and reporting"""
     )
-    st.write("##### Justification")
+    st.write("##### Why outperform the indexes?")
     st.write(
-        "Why outperform the index? The index serves as a benchmark to measure the portfolio's alpha or excess return. A positive difference between the portfolio's performance and the index's performance indicates value creation. By aiming to outperform the index, we strive to generate superior returns."
+        "The index serves as a benchmark to measure the portfolio's alpha or excess return. A positive difference between the portfolio's performance and the index's performance indicates value creation. By aiming to outperform the index, we strive to generate superior returns."
     )
     st.write("##### About Options")
     st.write("##### About Metrics")
