@@ -146,13 +146,14 @@ def index_none_text():
     )
     st.write(
         f""" {add_spaces(3)}1) To select an index from the companies of which portfolios will be made:
-                \n{add_spaces(6)}  - S&P500
-                \n{add_spaces(6)} - Nasdaq100
-                \n- Dow Jones Industrial Average
-                \n- FTSE 100
-                \n- DAX
-                \n- Nikkei 225
-                \n- HSI"""
+                \n{add_spaces(6)} 🇺🇸 :green-background[S&P500] - is a stock market index that tracks the performance of 500 of the largest companies listed on U.S. exchanges. It is widely regarded as a key barometer of the U.S. stock market's health. Market-Capitalization-Weighted.
+                \n{add_spaces(6)} 🇺🇸 :green-background[Nasdaq100] - is a stock market index that includes 100 of the largest non-financial companies listed on the Nasdaq Stock Market. It's heavily weighted towards technology companies, making it a popular benchmark for the tech industry. Market-Capitalization-Weighted.
+                \n{add_spaces(6)} 🇺🇸 :green-background[Dow Jones Industrial Average] -  is a stock market index that measures the performance of 30 large publicly-owned companies based primarily in the United States. Price-Weighted Index.
+                \n{add_spaces(6)} 🇬🇧 :green-background[FTSE 100] -  is a share index of the 100 companies listed on the London Stock Exchange with the highest market capitalization. Market-Capitalization-Weighted.
+                \n{add_spaces(6)} 🇩🇪 :green-background[DAX] -  is a stock market index consisting of the 40 largest German companies listed on the Frankfurt Stock Exchange. Market-Capitalization-Weighted.
+                \n{add_spaces(6)} 🇭🇰 :green-background[Nikkei 225] -  is a stock market index that tracks the performance of 225 of the largest companies listed on the Tokyo Stock Exchange. Price-Weighted Index.
+                \n{add_spaces(6)} 🇯🇵 :green-background[Hang Seng Index (HSI)] - is a stock market index that tracks the performance of the 80 largest companies listed on the Hong Kong Stock Exchange. Market-Capitalization-Weighted.
+            \n{add_spaces(3)}2) In what way covariance matrix will be calculated:"""
     )
     st.write("##### About Metrics")
     st.write("##### About Backtesting")
