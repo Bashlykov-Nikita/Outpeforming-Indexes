@@ -61,8 +61,8 @@ def attention_text(attention_message: str):
     )
 
 
-def index_none_text():
-    return ""
+def add_spaces(number_of_spaces):
+    return " &nbsp;" * number_of_spaces
 
 
 def portfolio_none_text(selected_portfolio):
@@ -141,6 +141,19 @@ def index_none_text():
         "The index serves as a benchmark to measure the portfolio's alpha or excess return. A positive difference between the portfolio's performance and the index's performance indicates value creation. By aiming to outperform the index, we strive to generate superior returns."
     )
     st.write("##### About Options")
+    st.write(
+        "This project automatically rebalances 168 investment portfolios monthly. To view a specific portfolio, choose the relevant options:"
+    )
+    st.write(
+        f""" {add_spaces(3)}1) To select an index from the companies of which portfolios will be made:
+                \n{add_spaces(6)}  - S&P500
+                \n{add_spaces(6)} - Nasdaq100
+                \n- Dow Jones Industrial Average
+                \n- FTSE 100
+                \n- DAX
+                \n- Nikkei 225
+                \n- HSI"""
+    )
     st.write("##### About Metrics")
     st.write("##### About Backtesting")
     st.write("##### How results can be improved?")
