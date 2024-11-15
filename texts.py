@@ -152,8 +152,14 @@ def index_none_text():
                 \n{add_spaces(6)} 🇬🇧 :green-background[FTSE 100] -  is a share index of the 100 companies listed on the London Stock Exchange with the highest market capitalization. Market-Capitalization-Weighted.
                 \n{add_spaces(6)} 🇩🇪 :green-background[DAX] -  is a stock market index consisting of the 40 largest German companies listed on the Frankfurt Stock Exchange. Market-Capitalization-Weighted.
                 \n{add_spaces(6)} 🇭🇰 :green-background[Nikkei 225] -  is a stock market index that tracks the performance of 225 of the largest companies listed on the Tokyo Stock Exchange. Price-Weighted Index.
-                \n{add_spaces(6)} 🇯🇵 :green-background[Hang Seng Index (HSI)] - is a stock market index that tracks the performance of the 80 largest companies listed on the Hong Kong Stock Exchange. Market-Capitalization-Weighted.
-            \n{add_spaces(3)}2) In what way covariance matrix will be calculated:"""
+                \n{add_spaces(6)} 🇯🇵 :green-background[Hang Seng Index (HSI)] - is a stock market index that tracks the performance of the 80 largest companies listed on the Hong Kong Stock Exchange. Market-Capitalization-Weighted."""
+    )
+    attention_text("Tilt")
+    st.write(
+        f"""{add_spaces(3)}2) In what way covariance matrix will be calculated:
+                \n{add_spaces(6)} Sample - Uses only past data. This is an extreme method that has no model risk but high sample risk. The complexity is O(n^2), which makes it computationally expensive and time-consuming to produce results. Consequently, this method can be costly.
+                \n{add_spaces(6)} Constant Correlation Model - A simpler method that assumes all stocks move together equally. This is an extreme method that has no sample risk but high model risk. The complexity is constant, making these calculations inexpensive to produce. This method might seem contradictory to the entire Markowitz optimization idea, as the proper usage of the covariance matrix is the way to minimize risk. However, in scenarios where the data is noisy, this method can be effective.
+                \n{add_spaces(6)} Shrinkage Model - This method allows us to find an optimal trade-off between sample risk and model risk. Performing statistical shrinkage is formally equivalent to introducing minimum/maximum weight constraints. In this particular project, it mixes Sample and CCM methods in a 50/50 proportion, but this can be adjusted to any desired ratio."""
     )
     st.write("##### About Metrics")
     st.write("##### About Backtesting")
