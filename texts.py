@@ -140,13 +140,15 @@ def index_none_text():
     st.write(
         "The index serves as a benchmark to measure the portfolio's alpha or excess return. A positive difference between the portfolio's performance and the index's performance indicates value creation. By aiming to outperform the index, we strive to generate superior returns."
     )
-    st.write("##### About Options")
+    st.divider()
+    st.subheader("About Options")
     st.write(
         "This project automatically rebalances 168 investment portfolios monthly. To view a specific portfolio, choose the relevant options:"
     )
+    st.write("##### 1. Index:")
     st.write(
-        f""" {add_spaces(3)}1) To select an index from the companies of which portfolios will be made:
-                \n{add_spaces(6)} 🇺🇸 :grey-background[S&P500] - is a stock market index that tracks the performance of 500 of the largest companies listed on U.S. exchanges. It is widely regarded as a key barometer of the U.S. stock market's health. :green[Market-Capitalization-Weighted].
+        f""" 
+                {add_spaces(6)} 🇺🇸 :grey-background[S&P500] - is a stock market index that tracks the performance of 500 of the largest companies listed on U.S. exchanges. It is widely regarded as a key barometer of the U.S. stock market's health. :green[Market-Capitalization-Weighted].
                 \n{add_spaces(6)} 🇺🇸 :grey-background[Nasdaq100] - is a stock market index that includes 100 of the largest non-financial companies listed on the Nasdaq Stock Market. It's heavily weighted towards technology companies, making it a popular benchmark for the tech industry. :green[Market-Capitalization-Weighted].
                 \n{add_spaces(6)} 🇺🇸 :grey-background[Dow Jones Industrial Average] -  is a stock market index that measures the performance of 30 large publicly-owned companies based primarily in the United States. :blue[Price-Weighted] Index.
                 \n{add_spaces(6)} 🇬🇧 :grey-background[FTSE 100] -  is a share index of the 100 companies listed on the London Stock Exchange with the highest market capitalization. :green[Market-Capitalization-Weighted].
@@ -155,9 +157,9 @@ def index_none_text():
                 \n{add_spaces(6)} 🇯🇵 :grey-background[Hang Seng Index (HSI)] - is a stock market index that tracks the performance of the 80 largest companies listed on the Hong Kong Stock Exchange. :green[Market-Capitalization-Weighted]."""
     )
     attention_text("Tilt")
+    st.write("##### 2. Covariance:")
     st.write(
-        f"""{add_spaces(3)}2) In what way covariance matrix will be calculated:
-                \n{add_spaces(6)} :orange-background[Sample] - Uses only past data. This is an extreme method that has :red[no model risk but high sample risk]. The complexity is O(n^2), which makes it computationally expensive and time-consuming to produce results. Consequently, this method can be costly.
+        f"""{add_spaces(6)} :orange-background[Sample] - Uses only past data. This is an extreme method that has :red[no model risk but high sample risk]. The complexity is O(n^2), which makes it computationally expensive and time-consuming to produce results. Consequently, this method can be costly.
                 \n{add_spaces(6)} :orange-background[Constant Correlation Model] - A simpler method that assumes all stocks move together equally. This is an extreme method that has :red[no sample risk but high model risk]. The complexity is constant, making these calculations inexpensive to produce. This method might seem contradictory to the entire Markowitz optimization idea, as the proper usage of the covariance matrix is the way to minimize risk. However, in scenarios where the data is noisy, this method can be effective.
                 \n{add_spaces(6)} :orange-background[Shrinkage Model] - This method allows us to find an optimal trade-off between sample risk and model risk. Performing statistical shrinkage is formally equivalent to introducing minimum/maximum weight constraints. In this particular project, it mixes Sample and CCM methods in a :red[50/50 proportion], but this can be adjusted to any desired ratio."""
     )
