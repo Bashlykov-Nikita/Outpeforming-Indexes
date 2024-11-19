@@ -178,7 +178,19 @@ def index_none_text():
             \n{add_spaces(6)} :blue-background[Exponentially Weighted Average] - is a method that calculates the average of historical returns by assigning exponentially decreasing weights over time. This means that more recent data points are given more weight than older ones.
         """
     )
-    st.write("##### About Metrics")
+    st.divider()
+    st.subheader(" About Metrics")
+    st.write(
+        """
+        1) Average Annual Return (AAR): This measures the average yearly return of an investment over a specified period. It's calculated by taking the arithmetic mean of a series of annual returns
+        2) Annual Volatility: This measures the standard deviation of an investment's annual returns. It indicates how much the returns fluctuate from the average return, providing insight into the investment's risk level.
+        3) Skewness: This measures the asymmetry of the return distribution around its mean. Positive skewness indicates that the distribution has a longer right tail, while negative skewness indicates a longer left tail.
+        4) Kurtosis: This measures the "tailedness" of the return distribution. High kurtosis indicates a distribution with fat tails and a sharp peak, suggesting a higher probability of extreme returns.
+        5) Value at Risk (VaR) (5%): This measures the maximum potential loss of an investment over a given time period (e.g., one day) without a 5% probability. It's a risk management tool used to assess the potential for extreme losses.
+        6) Conditional Value at Risk (CVaR) (5%): Also known as Expected Shortfall, this measures the average loss beyond the VaR threshold, providing a more comprehensive view of tail risk.
+        7) Sharpe Ratio: This measures the risk-adjusted return of an investment. It's calculated by subtracting the risk-free rate from the investment's return and dividing by its standard deviation. A higher Sharpe ratio indicates better risk-adjusted performance.
+        8) Maximum Drawdown: This measures the largest peak-to-trough decline in the value of an investment over a specified period. It's an indicator of the potential loss an investor might face."""
+    )
     st.write("##### About Backtesting")
     st.write("##### How results can be improved?")
     st.write("##### Sources")
