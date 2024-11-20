@@ -155,15 +155,17 @@ def index_none_text():
     st.write("##### Index:")
     st.write(
         f""" 
-            {add_spaces(6)} 🇺🇸 :grey-background[S&P500] - is a stock market index that tracks the performance of 500 of the largest companies listed on U.S. exchanges. It is widely regarded as a key barometer of the U.S. stock market's health. :green[Market-Capitalization-Weighted].
-            \n{add_spaces(6)} 🇺🇸 :grey-background[Nasdaq100] - is a stock market index that includes 100 of the largest non-financial companies listed on the Nasdaq Stock Market. It's heavily weighted towards technology companies, making it a popular benchmark for the tech industry. :green[Market-Capitalization-Weighted].
-            \n{add_spaces(6)} 🇺🇸 :grey-background[Dow Jones Industrial Average] -  is a stock market index that measures the performance of 30 large publicly-owned companies based primarily in the United States. :blue[Price-Weighted] Index.
-            \n{add_spaces(6)} 🇬🇧 :grey-background[FTSE 100] -  is a share index of the 100 companies listed on the London Stock Exchange with the highest market capitalization. :green[Market-Capitalization-Weighted].
-            \n{add_spaces(6)} 🇩🇪 :grey-background[DAX] -  is a stock market index consisting of the 40 largest German companies listed on the Frankfurt Stock Exchange. :green[Market-Capitalization-Weighted].
-            \n{add_spaces(6)} 🇭🇰 :grey-background[Nikkei 225] -  is a stock market index that tracks the performance of 225 of the largest companies listed on the Tokyo Stock Exchange. :blue[Price-Weighted] Index.
-            \n{add_spaces(6)} 🇯🇵 :grey-background[Hang Seng Index (HSI)] - is a stock market index that tracks the performance of the 80 largest companies listed on the Hong Kong Stock Exchange. :green[Market-Capitalization-Weighted]."""
+            1. :grey-background[🇺🇸 S&P500 ] - is a stock market index that tracks the performance of 500 of the largest companies listed on U.S. exchanges. It is widely regarded as a key barometer of the U.S. stock market's health. :green[Market-Capitalization-Weighted].\n
+            2. :grey-background[🇺🇸 Nasdaq100] - is a stock market index that includes 100 of the largest non-financial companies listed on the Nasdaq Stock Market. It's heavily weighted towards technology companies, making it a popular benchmark for the tech industry. :green[Market-Capitalization-Weighted].\n
+            3. :grey-background[🇺🇸 Dow Jones Industrial Average] -  is a stock market index that measures the performance of 30 large publicly-owned companies based primarily in the United States. :blue[Price-Weighted] Index.\n
+            4. :grey-background[🇬🇧 FTSE 100] -  is a share index of the 100 companies listed on the London Stock Exchange with the highest market capitalization. :green[Market-Capitalization-Weighted].\n
+            5. :grey-background[🇩🇪 DAX] -  is a stock market index consisting of the 40 largest German companies listed on the Frankfurt Stock Exchange. :green[Market-Capitalization-Weighted].\n
+            6. :grey-background[🇭🇰 Nikkei 225] -  is a stock market index that tracks the performance of 225 of the largest companies listed on the Tokyo Stock Exchange. :blue[Price-Weighted] Index.\n
+            7. :grey-background[🇯🇵 Hang Seng Index (HSI)] - is a stock market index that tracks the performance of the 80 largest companies listed on the Hong Kong Stock Exchange. :green[Market-Capitalization-Weighted]."""
     )
-    attention_text("Tilt")
+    attention_text(
+        "Indices often include companies sharing similar characteristics, like large-cap or growth stocks. Relying solely on one index can lead to a concentrated portfolio, exposing it to specific factor risks"
+    )
     st.write("##### Covariance:")
     st.write(
         f"""
@@ -181,16 +183,20 @@ def index_none_text():
     st.divider()
     st.subheader(" About Metrics")
     st.write(
-        """
-        1) Average Annual Return (AAR): This measures the average yearly return of an investment over a specified period. It's calculated by taking the arithmetic mean of a series of annual returns
-        2) Annual Volatility: This measures the standard deviation of an investment's annual returns. It indicates how much the returns fluctuate from the average return, providing insight into the investment's risk level.
-        3) Skewness: This measures the asymmetry of the return distribution around its mean. Positive skewness indicates that the distribution has a longer right tail, while negative skewness indicates a longer left tail.
-        4) Kurtosis: This measures the "tailedness" of the return distribution. High kurtosis indicates a distribution with fat tails and a sharp peak, suggesting a higher probability of extreme returns.
-        5) Value at Risk (VaR) (5%): This measures the maximum potential loss of an investment over a given time period (e.g., one day) without a 5% probability. It's a risk management tool used to assess the potential for extreme losses.
-        6) Conditional Value at Risk (CVaR) (5%): Also known as Expected Shortfall, this measures the average loss beyond the VaR threshold, providing a more comprehensive view of tail risk.
-        7) Sharpe Ratio: This measures the risk-adjusted return of an investment. It's calculated by subtracting the risk-free rate from the investment's return and dividing by its standard deviation. A higher Sharpe ratio indicates better risk-adjusted performance.
-        8) Maximum Drawdown: This measures the largest peak-to-trough decline in the value of an investment over a specified period. It's an indicator of the potential loss an investor might face."""
+        f"{add_spaces(3)}When selecting a particular portfolio, metrics derived from historical backtesting are presented. These metrics illustrate the portfolio's past performance, along with providing insights into the likely distribution of future returns."
     )
+    st.write(
+        """
+        1) :blue-background[Average Annual Return (AAR)]: This measures the average :grey[yearly return] of an investment over a specified period. It's calculated by taking the arithmetic mean of a series of annual returns
+        2) :blue-background[Annual Volatility]: This measures the standard deviation of an investment's annual returns. It indicates how :grey[much the returns fluctuate] from the average return, providing insight into the investment's risk level.
+        3) :blue-background[Skewness]: This measures the :grey[asymmetry] of the return distribution around its mean. Positive skewness indicates that the distribution has a longer right tail, while negative skewness indicates a longer left tail.
+        4) :blue-background[Kurtosis]: This measures the :grey["tailedness"] of the return distribution. High kurtosis indicates a distribution with fat tails and a sharp peak, suggesting a higher probability of extreme returns.
+        5) :blue-background[Value at Risk (VaR) (5%)]: This measures the :grey[maximum potential loss] of an investment over a given time period  with a :grey[95% confidence]. It's a risk management tool used to assess the potential for extreme losses.
+        6) :blue-background[Conditional Value at Risk (CVaR) (5%)]: Also known as Expected Shortfall, this measures the :grey[average loss beyond the VaR] threshold, providing a more comprehensive view of tail risk.
+        7) :blue-background[Sharpe Ratio]: This measures the risk-adjusted return of an investment. It's calculated by subtracting the risk-free rate from the investment's return and dividing by its standard deviation. A higher Sharpe ratio indicates better :grey[risk-adjusted performance].
+        8) :blue-background[Maximum Drawdown]: This measures the :grey[largest peak-to-trough decline] in the value of an investment over a specified period. It's an indicator of the potential loss an investor might face."""
+    )
+    note_text("Metrics")
     st.write("##### About Backtesting")
     st.write("##### How results can be improved?")
     st.write("##### Sources")
