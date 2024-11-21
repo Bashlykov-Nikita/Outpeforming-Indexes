@@ -181,7 +181,9 @@ def index_none_text():
             \n{add_spaces(6)} :blue-background[Exponentially Weighted Average] - is a method that calculates the average of historical returns by assigning exponentially decreasing weights over time. This means that more recent data points are given more weight than older ones.
         """
     )
-    attention_text("Backtesting for EWA")
+    attention_text(
+        "You can notice that in almost all metrics, Exponentially Weighted Average performs worse than Simple Average. This is due to the small backtest range, which means that older but still relevant data has significantly less weight than it should when creating a portfolio. To accurately assess EWA, it is necessary to increase the estimation window in backtesting"
+    )
     st.divider()
     st.subheader(" About Metrics")
     st.write(
