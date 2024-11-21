@@ -173,6 +173,7 @@ def index_none_text():
             \n{add_spaces(6)} :orange-background[Constant Correlation Model] - A simpler method that assumes all stocks move together equally. This is an extreme method that has :red[no sample risk but high model risk]. The complexity is constant, making these calculations inexpensive to produce. This method might seem contradictory to the entire Markowitz optimization idea, as the proper usage of the covariance matrix is the way to minimize risk. However, in scenarios where the data is noisy, this method can be effective.
             \n{add_spaces(6)} :orange-background[Shrinkage Model] - This method allows us to find an optimal trade-off between sample risk and model risk. Performing statistical shrinkage is formally equivalent to introducing minimum/maximum weight constraints. In this particular project, it mixes Sample and CCM methods in a :red[50/50 proportion], but this can be adjusted to any desired ratio."""
     )
+    note_text("Shrinkage proportions")
     st.write("##### Expected Return:")
     st.write(
         f"""
@@ -180,6 +181,7 @@ def index_none_text():
             \n{add_spaces(6)} :blue-background[Exponentially Weighted Average] - is a method that calculates the average of historical returns by assigning exponentially decreasing weights over time. This means that more recent data points are given more weight than older ones.
         """
     )
+    attention_text("Backtesting for EWA")
     st.divider()
     st.subheader(" About Metrics")
     st.write(
@@ -189,14 +191,20 @@ def index_none_text():
         """
         1) :blue-background[Average Annual Return (AAR)]: This measures the average :grey[yearly return] of an investment over a specified period. It's calculated by taking the arithmetic mean of a series of annual returns
         2) :blue-background[Annual Volatility]: This measures the standard deviation of an investment's annual returns. It indicates how :grey[much the returns fluctuate] from the average return, providing insight into the investment's risk level.
-        3) :blue-background[Skewness]: This measures the :grey[asymmetry] of the return distribution around its mean. Positive skewness indicates that the distribution has a longer right tail, while negative skewness indicates a longer left tail.
-        4) :blue-background[Kurtosis]: This measures the :grey["tailedness"] of the return distribution. High kurtosis indicates a distribution with fat tails and a sharp peak, suggesting a higher probability of extreme returns.
+        3) :blue-background[Skewness]: This measures the :grey[asymmetry] of the return distribution around its mean. :green[Positive skewness] indicates that the distribution has a :green[longer right tail], while :red[negative skewness] indicates a :red[longer left tail].
+        4) :blue-background[Kurtosis]: This measures the :grey["tailedness"] of the return distribution. High kurtosis indicates a distribution with fat tails and a sharp peak, :red[suggesting a higher probability of extreme returns].
         5) :blue-background[Value at Risk (VaR) (5%)]: This measures the :grey[maximum potential loss] of an investment over a given time period  with a :grey[95% confidence]. It's a risk management tool used to assess the potential for extreme losses.
         6) :blue-background[Conditional Value at Risk (CVaR) (5%)]: Also known as Expected Shortfall, this measures the :grey[average loss beyond the VaR] threshold, providing a more comprehensive view of tail risk.
         7) :blue-background[Sharpe Ratio]: This measures the risk-adjusted return of an investment. It's calculated by subtracting the risk-free rate from the investment's return and dividing by its standard deviation. A higher Sharpe ratio indicates better :grey[risk-adjusted performance].
         8) :blue-background[Maximum Drawdown]: This measures the :grey[largest peak-to-trough decline] in the value of an investment over a specified period. It's an indicator of the potential loss an investor might face."""
     )
-    note_text("Metrics")
-    st.write("##### About Backtesting")
+    note_text(
+        "The Sharpe ratio, while useful, offers a limited view of portfolio risk by focusing solely on volatility. To assess the potential for extreme losses, investors should consider VaR, CVaR, and MDD. The effectiveness of these measures is enhanced by understanding the skewness and kurtosis of the return distribution, which can reveal valuable insights about the likelihood of tail events"
+    )
+    st.divider()
+    st.subheader(" About Backtesting")
+    st.write(
+        "Rolling window backtesting is a valuable technique for assessing the performance and robustness of asset portfolio strategies over time. It involves creating a fixed-size window of historical data, applying the strategy to that window, and then moving the window forward by a certain interval. This process is repeated until the entire dataset has been covered."
+    )
     st.write("##### How results can be improved?")
     st.write("##### Sources")
