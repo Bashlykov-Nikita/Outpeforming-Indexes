@@ -210,5 +210,8 @@ def index_none_text():
     st.write(
         f"{add_spaces(3)}Rolling window backtesting is a valuable technique for assessing the performance and robustness of asset portfolio strategies over time. It involves creating a fixed-size window of historical data, applying the strategy to that window, and then moving the window forward by a certain interval. This process is repeated until the entire dataset has been covered."
     )
+    note_text(
+        "Our backtest begins in 2019 with a yearly estimation window and monthly steps. These settings can be tweaked for better accuracy. Daily data is preferred over monthly, and the backtest frequency should align with your planned rebalancing"
+    )
     st.write("##### How results can be improved?")
     st.write("##### Sources")
