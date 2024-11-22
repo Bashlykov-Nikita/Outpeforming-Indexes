@@ -173,7 +173,9 @@ def index_none_text():
             \n{add_spaces(6)} :orange-background[Constant Correlation Model] - A simpler method that assumes all stocks move together equally. This is an extreme method that has :red[no sample risk but high model risk]. The complexity is constant, making these calculations inexpensive to produce. This method might seem contradictory to the entire Markowitz optimization idea, as the proper usage of the covariance matrix is the way to minimize risk. However, in scenarios where the data is noisy, this method can be effective.
             \n{add_spaces(6)} :orange-background[Shrinkage Model] - This method allows us to find an optimal trade-off between sample risk and model risk. Performing statistical shrinkage is formally equivalent to introducing minimum/maximum weight constraints. In this particular project, it mixes Sample and CCM methods in a :red[50/50 proportion], but this can be adjusted to any desired ratio."""
     )
-    note_text("Shrinkage proportions")
+    note_text(
+        "In this project, Shrinkage is balanced at 50/50, however, this is not necessarily the best approach. It is recommended to test various proportions between sample and model risk to understand which ratio is most suitable for specific portfolios"
+    )
     st.write("##### Expected Return:")
     st.write(
         f"""
@@ -182,7 +184,7 @@ def index_none_text():
         """
     )
     attention_text(
-        "You can notice that in almost all metrics, Exponentially Weighted Average performs worse than Simple Average. This is due to the small backtest range, which means that older but still relevant data has significantly less weight than it should when creating a portfolio. To accurately assess EWA, it is necessary to increase the estimation window in backtesting"
+        "You can notice that in almost all portfolios, Exponentially Weighted Average performs worse than Simple Average. This is due to the small backtest range, which means that older but still relevant data has significantly less weight than it should when creating a portfolio. To accurately assess EWA, it is necessary to increase the estimation window in backtesting"
     )
     st.divider()
     st.subheader(" About Metrics")
@@ -204,9 +206,9 @@ def index_none_text():
         "The Sharpe ratio, while useful, offers a limited view of portfolio risk by focusing solely on volatility. To assess the potential for extreme losses, investors should consider VaR, CVaR, and MDD. The effectiveness of these measures is enhanced by understanding the skewness and kurtosis of the return distribution, which can reveal valuable insights about the likelihood of tail events"
     )
     st.divider()
-    st.subheader(" About Backtesting")
+    st.subheader("About Backtesting")
     st.write(
-        "Rolling window backtesting is a valuable technique for assessing the performance and robustness of asset portfolio strategies over time. It involves creating a fixed-size window of historical data, applying the strategy to that window, and then moving the window forward by a certain interval. This process is repeated until the entire dataset has been covered."
+        f"{add_spaces(3)}Rolling window backtesting is a valuable technique for assessing the performance and robustness of asset portfolio strategies over time. It involves creating a fixed-size window of historical data, applying the strategy to that window, and then moving the window forward by a certain interval. This process is repeated until the entire dataset has been covered."
     )
     st.write("##### How results can be improved?")
     st.write("##### Sources")
