@@ -213,5 +213,33 @@ def index_none_text():
     note_text(
         "Our backtest begins in 2019 with a yearly estimation window and monthly steps. These settings can be tweaked for better accuracy. Daily data is preferred over monthly, and the backtest frequency should align with your planned rebalancing"
     )
-    st.write("##### How results can be improved?")
+    st.subheader("How results can be improved?")
+    st.write("##### Constant Proportion Portfolio Insurance (CPPI)")
+    st.write(
+        f"{add_spaces(3)}Constant Proportion Portfolio Insurance (CPPI) is a dynamic investment strategy that aims to provide a floor or minimum value to a portfolio while still allowing for participation in upside market movements. It's essentially a risk management technique that seeks to balance potential gains with downside protection."
+    )
+    st.write(
+        "Adding a CPPI strategy can improve portfolio performance in several ways:"
+    )
+    st.write("Downside Protection:")
+    st.write(
+        """
+            - Preserves Capital: CPPI helps protect the downside by setting a floor for the portfolio's value. This means that even in a market downturn, the portfolio's value is unlikely to fall below a certain level.   
+            - Reduced Volatility: By limiting downside risk, CPPI can help reduce the overall volatility of the portfolio, leading to a smoother performance trajectory.
+            """
+    )
+    st.write("Upside Participation:")
+    st.write(
+        """
+        - Captures Market Gains: CPPI allows investors to participate in market uptrends by investing a portion of the portfolio in a risky asset. As the market rises, the allocation to the risky asset increases, potentially leading to significant gains.
+        - Dynamic Allocation: The strategy dynamically adjusts the allocation between the risky and risk-free assets based on the portfolio's value relative to the floor. This allows for greater participation in market upswings while maintaining downside protection.
+        """
+    )
+    st.write("Improved Risk-Adjusted Returns:")
+    st.write(
+        """
+            - Enhanced Sharpe Ratio: By limiting downside risk and maintaining upside potential, CPPI can potentially improve the Sharpe ratio of the portfolio. This means the portfolio generates higher returns for a given level of risk.
+            - Better Risk-Reward Profile: CPPI can help create a more favorable risk-reward profile by providing a balance between risk and return.
+            """
+    )
     st.write("##### Sources")
