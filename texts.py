@@ -255,4 +255,30 @@ def index_none_text():
             - Enhanced Investment Performance: By focusing on matching liabilities, LDI can help improve the overall investment performance of the portfolio.
             """
     )
+    st.write("##### Factor Analysis")
+    st.write(
+        f"{add_spaces(3)}Factor analysis is a statistical technique that can be applied to financial data to identify underlying factors that drive asset returns. By understanding these factors, investors and analysts can make more informed decisions and develop effective investment strategies."
+    )
+    st.write(
+        f"{add_spaces(3)}Factor analysis can significantly enhance portfolio performance by providing a structured approach to understanding and managing risk and return. Here's how:"
+    )
+    st.write(
+        """
+            1. Identifying Key Drivers of Returns:
+            - Uncovering Hidden Patterns: Factor analysis helps uncover the underlying factors that drive asset returns, such as value, growth, momentum, and size.
+            - Informed Decision-Making: By understanding these factors, investors can make more informed decisions about asset allocation and portfolio construction.
+            2. Enhanced Risk Management:
+            - Diversification: Factor analysis helps identify diversifiable and non-diversifiable risks. By diversifying across different factors, investors can reduce overall portfolio risk.
+            - Tail Risk Management: By understanding the factors that contribute to extreme events, investors can implement strategies to mitigate tail risk.
+            3. Improved Portfolio Construction:
+            - Factor-Based Portfolios: Constructing portfolios based on specific factors can lead to more targeted exposure to desired risk and return characteristics.
+            - Factor Tilting: Investors can tilt their portfolios towards factors that are expected to outperform, such as value or momentum.
+            - Factor Timing: By analyzing the cyclical nature of factors, investors can time their exposure to different factors to optimize returns.
+            4. Performance Attribution and Evaluation:
+            - Understanding Performance: Factor analysis helps break down portfolio performance into its component factors, allowing investors to understand the sources of returns and identify areas for improvement.   
+            - Benchmarking: Comparing factor exposures to benchmarks can help assess relative performance and identify areas of outperformance or underperformance.
+            5. Risk Budgeting:
+            - Allocating Risk: By understanding the factor risks in a portfolio, investors can allocate risk more effectively across different factors.   
+            - Controlling Risk: Factor analysis can help identify and manage unintended factor exposures that could increase portfolio risk. """
+    )
     st.write("##### Sources")
