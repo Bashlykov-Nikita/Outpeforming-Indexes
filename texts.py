@@ -125,20 +125,20 @@ def index_none_text():
     st.subheader("Overview")
     st.write("##### The main idea of this project:")
     st.write(
-        "Develop a robust investment portfolio optimization framework that generates diverse portfolio strategies based on popular financial indexes."
+        f"{add_spaces(3)}Develop a robust investment :green[portfolio optimization framework] that generates diverse portfolio strategies :blue[based on popular financial indexes]."
     )
     st.write("##### What this programme does:")
     st.write(
-        """- Web-scraping companies names
-        \n- Getting companies historical returns
-        \n- Creating different types of portfolios
-        \n- Backtesting
-        \n- Risk analysis and performance evaluation
-        \n- Visualization and reporting"""
+        """- 🔍 Web-scraping companies names
+        \n- 📈 Getting companies historical returns
+        \n- 💼 Creating different types of portfolios
+        \n- ⏳ Backtesting
+        \n- 📊 Risk analysis and performance evaluation
+        \n- 🎨 Visualization and reporting"""
     )
     st.write("##### Why outperform the indexes?")
     st.write(
-        "The index serves as a benchmark to measure the portfolio's alpha or excess return. A positive difference between the portfolio's performance and the index's performance indicates value creation. By aiming to outperform the index, we strive to generate superior returns."
+        f"{add_spaces(3)}The :blue[index serves as a benchmark] to measure the portfolio's alpha or excess return. A positive :green[difference between the portfolio's performance and the index's performance indicates value creation]. By aiming to outperform the index, we strive to generate superior returns."
     )
     st.divider()
     st.subheader("About Options")
@@ -215,69 +215,69 @@ def index_none_text():
     )
     st.divider()
     st.subheader("How results can be improved?")
-    st.write("##### Constant Proportion Portfolio Insurance (CPPI)")
+    st.write("##### :blue-background[Constant Proportion Portfolio Insurance (CPPI)]")
     st.write(
         f"{add_spaces(3)}Constant Proportion Portfolio Insurance (CPPI) is a dynamic investment strategy that aims to provide a floor or minimum value to a portfolio while still allowing for participation in upside market movements. It's essentially a risk management technique that seeks to balance potential gains with downside protection."
     )
     st.write(
-        f"{add_spaces(3)}Adding a CPPI strategy can improve portfolio performance in several ways:"
+        f"{add_spaces(3)}Adding a CPPI strategy can :green-background[improve portfolio performance] in several ways:"
     )
-    st.write("Downside Protection:")
+    st.write(":grey-background[Downside Protection:]")
     st.write(
         """
             - Preserves Capital: CPPI helps protect the downside by setting a floor for the portfolio's value. This means that even in a market downturn, the portfolio's value is unlikely to fall below a certain level.   
             - Reduced Volatility: By limiting downside risk, CPPI can help reduce the overall volatility of the portfolio, leading to a smoother performance trajectory.
             """
     )
-    st.write("Upside Participation:")
+    st.write(":grey-background[Upside Participation:]")
     st.write(
         """
             - Captures Market Gains: CPPI allows investors to participate in market uptrends by investing a portion of the portfolio in a risky asset. As the market rises, the allocation to the risky asset increases, potentially leading to significant gains.
             - Dynamic Allocation: The strategy dynamically adjusts the allocation between the risky and risk-free assets based on the portfolio's value relative to the floor. This allows for greater participation in market upswings while maintaining downside protection.
             """
     )
-    st.write("Improved Risk-Adjusted Returns:")
+    st.write(":grey-background[Improved Risk-Adjusted Returns:]")
     st.write(
         """
             - Enhanced Sharpe Ratio: By limiting downside risk and maintaining upside potential, CPPI can potentially improve the Sharpe ratio of the portfolio. This means the portfolio generates higher returns for a given level of risk.
             - Better Risk-Reward Profile: CPPI can help create a more favorable risk-reward profile by providing a balance between risk and return.
             """
     )
-    st.write("##### Liability-Driven Investment (LDI)")
+    st.write("##### :blue-background[Liability-Driven Investment (LDI)]")
     st.write(
         f"{add_spaces(3)} Liability-Driven Investment (LDI) is an investment strategy that focuses on matching the timing and amount of future cash flows from investments with future liabilities. It's particularly common in pension funds and insurance companies, where they have long-term obligations to pay out benefits."
     )
-    st.write(f"{add_spaces(3)}Key Benefits of LDI:")
+    st.write(f"{add_spaces(3)}:green-background[Key Benefits of LDI]:")
     st.write(
         """
-            - Reduced Risk: By matching assets to liabilities, LDI can help reduce the risk of funding shortfalls.
-            - Improved Financial Stability: LDI can contribute to the long-term financial stability of institutions by ensuring that they have sufficient assets to meet their future obligations.
-            - Enhanced Investment Performance: By focusing on matching liabilities, LDI can help improve the overall investment performance of the portfolio.
+            - :grey-background[Reduced Risk]: By matching assets to liabilities, LDI can help reduce the risk of funding shortfalls.
+            - :grey-background[Improved Financial Stability]: LDI can contribute to the long-term financial stability of institutions by ensuring that they have sufficient assets to meet their future obligations.
+            - :grey-background[Enhanced Investment Performance]: By focusing on matching liabilities, LDI can help improve the overall investment performance of the portfolio.
             """
     )
-    st.write("##### Factor Analysis")
+    st.write("##### :blue-background[Factor Analysis]")
     st.write(
         f"{add_spaces(3)}Factor analysis is a statistical technique that can be applied to financial data to identify underlying factors that drive asset returns. By understanding these factors, investors and analysts can make more informed decisions and develop effective investment strategies."
     )
     st.write(
-        f"{add_spaces(3)}Factor analysis can significantly enhance portfolio performance by providing a structured approach to understanding and managing risk and return. Here's how:"
+        f"{add_spaces(3)}Factor analysis can significantly :green-background[enhance portfolio performance] by providing a structured approach to understanding and managing risk and return. Here's how:"
     )
     st.write(
         """
-            1. Identifying Key Drivers of Returns:
+            1. :grey-background[Identifying Key Drivers of Returns]:
             - Uncovering Hidden Patterns: Factor analysis helps uncover the underlying factors that drive asset returns, such as value, growth, momentum, and size.
             - Informed Decision-Making: By understanding these factors, investors can make more informed decisions about asset allocation and portfolio construction.
-            2. Enhanced Risk Management:
+            2. :grey-background[Enhanced Risk Management]:
             - Diversification: Factor analysis helps identify diversifiable and non-diversifiable risks. By diversifying across different factors, investors can reduce overall portfolio risk.
             - Tail Risk Management: By understanding the factors that contribute to extreme events, investors can implement strategies to mitigate tail risk.
-            3. Improved Portfolio Construction:
+            3. :grey-background[Improved Portfolio Construction]:
             - Factor-Based Portfolios: Constructing portfolios based on specific factors can lead to more targeted exposure to desired risk and return characteristics.
             - Factor Tilting: Investors can tilt their portfolios towards factors that are expected to outperform, such as value or momentum.
             - Factor Timing: By analyzing the cyclical nature of factors, investors can time their exposure to different factors to optimize returns.
-            4. Performance Attribution and Evaluation:
+            4. :grey-background[Performance Attribution and Evaluation]:
             - Understanding Performance: Factor analysis helps break down portfolio performance into its component factors, allowing investors to understand the sources of returns and identify areas for improvement.   
             - Benchmarking: Comparing factor exposures to benchmarks can help assess relative performance and identify areas of outperformance or underperformance.
-            5. Risk Budgeting:
+            5. :grey-background[Risk Budgeting]:
             - Allocating Risk: By understanding the factor risks in a portfolio, investors can allocate risk more effectively across different factors.   
             - Controlling Risk: Factor analysis can help identify and manage unintended factor exposures that could increase portfolio risk. """
     )
