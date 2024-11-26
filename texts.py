@@ -281,4 +281,12 @@ def index_none_text():
             - Allocating Risk: By understanding the factor risks in a portfolio, investors can allocate risk more effectively across different factors.   
             - Controlling Risk: Factor analysis can help identify and manage unintended factor exposures that could increase portfolio risk. """
     )
-    st.write("##### Sources")
+    st.divider()
+    st.subheader(" Sources")
+    st.write(
+        "#### [Get Historical Index Profits with Python! 🚀](https://github.com/Bashlykov-Nikita/Companies-Returns)"
+    )
+    st.write(
+        "#### [Building and Backtesting Investment Portfolios🚀](https://github.com/Bashlykov-Nikita/Creating-Portfolio)"
+    )
+    st.write("#### Author [Bashlykov Nikita](https://github.com/Bashlykov-Nikita)")
