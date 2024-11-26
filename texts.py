@@ -143,7 +143,7 @@ def index_none_text():
     st.divider()
     st.subheader("About Options")
     st.write(
-        "This project automatically rebalances 168 investment portfolios monthly. To view a specific portfolio, choose the relevant options:"
+        "This project automatically rebalances :green[168 investment portfolios monthly]. To view a specific portfolio, choose the relevant options:"
     )
     st.write(
         """
@@ -155,13 +155,13 @@ def index_none_text():
     st.write("##### Index:")
     st.write(
         f""" 
-            1. :grey-background[🇺🇸 S&P500 ] - is a stock market index that tracks the performance of 500 of the largest companies listed on U.S. exchanges. It is widely regarded as a key barometer of the U.S. stock market's health. :green[Market-Capitalization-Weighted].\n
-            2. :grey-background[🇺🇸 Nasdaq100] - is a stock market index that includes 100 of the largest non-financial companies listed on the Nasdaq Stock Market. It's heavily weighted towards technology companies, making it a popular benchmark for the tech industry. :green[Market-Capitalization-Weighted].\n
-            3. :grey-background[🇺🇸 Dow Jones Industrial Average] -  is a stock market index that measures the performance of 30 large publicly-owned companies based primarily in the United States. :blue[Price-Weighted] Index.\n
-            4. :grey-background[🇬🇧 FTSE 100] -  is a share index of the 100 companies listed on the London Stock Exchange with the highest market capitalization. :green[Market-Capitalization-Weighted].\n
-            5. :grey-background[🇩🇪 DAX] -  is a stock market index consisting of the 40 largest German companies listed on the Frankfurt Stock Exchange. :green[Market-Capitalization-Weighted].\n
-            6. :grey-background[🇭🇰 Nikkei 225] -  is a stock market index that tracks the performance of 225 of the largest companies listed on the Tokyo Stock Exchange. :blue[Price-Weighted] Index.\n
-            7. :grey-background[🇯🇵 Hang Seng Index (HSI)] - is a stock market index that tracks the performance of the 80 largest companies listed on the Hong Kong Stock Exchange. :green[Market-Capitalization-Weighted]."""
+            1. :grey-background[🇺🇸 S&P500 ] - is a stock market index that tracks the performance of :blue[500 of the largest companies] listed on U.S. exchanges. It is widely regarded as a key barometer of the U.S. stock market's health. :green[Market-Capitalization-Weighted].\n
+            2. :grey-background[🇺🇸 Nasdaq100] - is a stock market index that includes :blue[100 of the largest non-financial] companies listed on the Nasdaq Stock Market. It's :blue[heavily weighted towards technology companies], making it a popular benchmark for the tech industry. :green[Market-Capitalization-Weighted].\n
+            3. :grey-background[🇺🇸 Dow Jones Industrial Average] -  is a stock market index that measures the performance of :blue[30 large publicly-owned companies] based primarily in the United States. :blue[Price-Weighted] Index.\n
+            4. :grey-background[🇬🇧 FTSE 100] -  is a share index of the :blue[100 companies] listed on the London Stock Exchange with the highest market capitalization. :green[Market-Capitalization-Weighted].\n
+            5. :grey-background[🇩🇪 DAX] -  is a stock market index consisting of the :blue[40 largest German companies] listed on the Frankfurt Stock Exchange. :green[Market-Capitalization-Weighted].\n
+            6. :grey-background[🇯🇵 Nikkei 225] -  is a stock market index that tracks the performance of :blue[225 of the largest companies] listed on the Tokyo Stock Exchange. :blue[Price-Weighted] Index.\n
+            7. :grey-background[🇭🇰 Hang Seng Index (HSI)] - is a stock market index that tracks the performance of the :blue[80 largest companies] listed on the Hong Kong Stock Exchange. :green[Market-Capitalization-Weighted]."""
     )
     attention_text(
         "Indices often include companies sharing similar characteristics, like large-cap or growth stocks. Relying solely on one index can lead to a concentrated portfolio, exposing it to specific factor risks"
@@ -194,7 +194,7 @@ def index_none_text():
     st.write(
         """
         1) :blue-background[Average Annual Return (AAR)]: This measures the average :grey[yearly return] of an investment over a specified period. It's calculated by taking the arithmetic mean of a series of annual returns
-        2) :blue-background[Annual Volatility]: This measures the standard deviation of an investment's annual returns. It indicates how :grey[much the returns fluctuate] from the average return, providing insight into the investment's risk level.
+        2) :blue-background[Annual Volatility]: This measures the standard deviation of an investment's annual returns. It indicates :grey[how much the returns fluctuate] from the average return, providing insight into the investment's risk level.
         3) :blue-background[Skewness]: This measures the :grey[asymmetry] of the return distribution around its mean. :green[Positive skewness] indicates that the distribution has a :green[longer right tail], while :red[negative skewness] indicates a :red[longer left tail].
         4) :blue-background[Kurtosis]: This measures the :grey["tailedness"] of the return distribution. High kurtosis indicates a distribution with fat tails and a sharp peak, :red[suggesting a higher probability of extreme returns].
         5) :blue-background[Value at Risk (VaR) (5%)]: This measures the :grey[maximum potential loss] of an investment over a given time period  with a :grey[95% confidence]. It's a risk management tool used to assess the potential for extreme losses.
