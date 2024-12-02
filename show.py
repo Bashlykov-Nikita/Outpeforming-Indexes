@@ -95,7 +95,7 @@ def show_bar_chart(w: pd.Series) -> None:
     w = w.sort_values(ascending=True)
     top_w = (
         pd.DataFrame({"Companies": w.index, "Weights": w.values})
-        .replace(0, np.NaN)
+        .replace(0, np.nan)
         .dropna()
         .drop_duplicates("Companies")
     )
