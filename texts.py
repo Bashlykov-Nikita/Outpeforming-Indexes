@@ -15,6 +15,7 @@ def note_text(note_message: str):
         """
     <style>
         .note-block {
+            color: #ffffff;
             padding: 1rem;
             border-radius: 0.5rem;
             background-color: #062633;
@@ -45,6 +46,7 @@ def attention_text(attention_message: str):
         """
     <style>
         .attention-block {
+            color: #ffffff;
             padding: 1rem;
             border-radius: 0.5rem;
             background-color: #481d00;
